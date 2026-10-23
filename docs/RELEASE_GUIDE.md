@@ -1,6 +1,6 @@
 # Source Publication Guide
 
-OpenBridge source publication is independent from production of an official signed application.
+Openbridge source publication is independent from production of an official signed application.
 
 ## Candidate gate
 

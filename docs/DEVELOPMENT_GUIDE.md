@@ -24,8 +24,8 @@ brew install python@3.14 ffmpeg
 Then clone and set up:
 
 ```bash
-git clone https://github.com/lunr-studio/OpenBridge-Source.git
-cd OpenBridge-Source
+git clone https://github.com/lunr-studio/Openbridge-Source.git
+cd Openbridge-Source
 python3.14 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip

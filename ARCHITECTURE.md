@@ -1,4 +1,4 @@
-# OpenBridge Cloud architecture and contracts
+# Openbridge Cloud architecture and contracts
 
 **Proposed contract v1 — 2026-10-10.** This document describes the hosted shared-memory path approved in [PRD.md](PRD.md), not deployed infrastructure. [EVAL.md](EVAL.md) defines verification. The [existing Swift/Python architecture](docs/ARCHITECTURE_AND_DATA_FLOW.md) remains the implementation reference for local capture and the JSON engine boundary.
 

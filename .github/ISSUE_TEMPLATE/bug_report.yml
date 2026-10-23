@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a reproducible OpenBridge failure on an identified source or artifact
+description: Report a reproducible Openbridge failure on an identified source or artifact
 title: "[Bug]: "
 labels: ["bug"]
 body:
@@ -24,7 +24,7 @@ body:
       label: Fresh steps to reproduce
       description: Start from a new input where possible. Include the real production entry point and identify any reused or cached result.
       placeholder: |
-        1. Open OpenBridge...
+        1. Open Openbridge...
         2. Create a fresh...
         3. ...
     validations:

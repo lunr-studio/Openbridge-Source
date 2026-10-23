@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Security vulnerability
-    url: https://github.com/lunr-studio/OpenBridge-Source/security/advisories/new
+    url: https://github.com/lunr-studio/Openbridge-Source/security/advisories/new
     about: Report vulnerabilities privately. Do not open a public issue.
   - name: Support and questions
-    url: https://github.com/lunr-studio/OpenBridge-Source/blob/main/SUPPORT.md
+    url: https://github.com/lunr-studio/Openbridge-Source/blob/main/SUPPORT.md
     about: See SUPPORT.md for help with installation, usage, and questions.

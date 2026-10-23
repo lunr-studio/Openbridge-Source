@@ -4,7 +4,7 @@ This file describes existing Swift/Python implementation. The canonical proposed
 Cloud path is [root ARCHITECTURE.md](../ARCHITECTURE.md); its shared storage,
 completion receipts and remote MCP are not implemented by the foundation PR.
 
-OpenBridge has two source components: a native Swift macOS app and a Python engine.
+Openbridge has two source components: a native Swift macOS app and a Python engine.
 
 ```text
 microphone or media

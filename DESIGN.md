@@ -1,8 +1,8 @@
-# OpenBridge application design
+# Openbridge application design
 
 ## Product and personality
 
-OpenBridge is a local-first Mac app for meeting capture, transcription, local cleanup, optional cloud intelligence and voice typing into the app where work already lives. It has a main Dock window, a menu bar launchpad and a floating flow bar, plus a public tester/download site. Its audience includes clinicians, researchers, developers, writers and other professionals who want useful AI with control over where their words are processed.
+Openbridge is a local-first Mac app for meeting capture, transcription, local cleanup, optional cloud intelligence and voice typing into the app where work already lives. It has a main Dock window, a menu bar launchpad and a floating flow bar, plus a public tester/download site. Its audience includes clinicians, researchers, developers, writers and other professionals who want useful AI with control over where their words are processed.
 
 **Quiet Premium Utility.** Calm, capable and easy to read. Use the homepage's cool white atmosphere, navy ink, clear type and restrained yellow microphone identity. The memorable promise is **Local AI, your control**. Typography, grouping and generous reading space carry the design; avoid decorative dashboards, oversized status boxes, gradients on action buttons and bubbly radius everywhere. Preserve the supplied microphone artwork.
 
@@ -83,7 +83,7 @@ The approved sidebar has **Home, Meetings, Voice typing, Transcribe**, with **Se
 
 There are **16 main clickable destinations**, plus **onboarding, menu and flow bar**: **19 review surfaces**. Loading, empty, blocked, error, confirmation and success variants are states rather than extra navigation entries.
 
-- Dictionary changes apply across OpenBridge, including meeting and file transcription. Label that scope and link to Dictionary from Home options and Transcribe details.
+- Dictionary changes apply across Openbridge, including meeting and file transcription. Label that scope and link to Dictionary from Home options and Transcribe details.
 - Text actions rename the existing Transforms page; they rewrite selected text in any app and do not require a prior dictation.
 - Transcribe owns the latest media result. Do not imply an existing persistent file-transcript library or place file results inside dictation History. Home may show a compact link to the latest result.
 - Settings has one coherent hierarchy. Menu Settings and Cmd-, should reach that same hierarchy in a later native implementation. Preserve controls previously only in the all-in-one Settings window, especially Cleanup mode, support/feedback and version information.
