@@ -1,0 +1,143 @@
+name: Bug report
+description: Report a reproducible OpenBridge failure on an identified source or artifact
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. A precise environment and candidate identity help us reproduce it without guessing.
+        If this is a security vulnerability, do not use this form; follow `SECURITY.md`.
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed and expected behavior
+      description: What happened, and what should have happened instead?
+      placeholder: |
+        Observed:
+        Expected:
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Fresh steps to reproduce
+      description: Start from a new input where possible. Include the real production entry point and identify any reused or cached result.
+      placeholder: |
+        1. Open OpenBridge...
+        2. Create a fresh...
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: delivery-context
+    attributes:
+      label: Where was it observed?
+      options:
+        - Component or automated test
+        - Source-built Integrated app
+        - Candidate artifact
+        - Accepted Beta artifact
+        - Unknown
+    validations:
+      required: true
+  - type: input
+    id: source-sha
+    attributes:
+      label: Full source commit SHA
+      description: Use the full 40-character SHA. Write unknown only if it truly cannot be obtained.
+      placeholder: "0123456789abcdef0123456789abcdef01234567"
+    validations:
+      required: true
+  - type: textarea
+    id: artifact-identity
+    attributes:
+      label: Candidate or Accepted Beta identity
+      description: If packaged, provide version, build, artifact filename/ID, and SHA-256. Otherwise write not packaged.
+      placeholder: |
+        Version/build:
+        Artifact ID/filename:
+        SHA-256:
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - macOS app (Swift)
+        - Python engine
+        - Source setup / build
+        - Documentation
+        - Cross-component
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+      placeholder: "macOS 14.5; write not run on Mac if applicable"
+    validations:
+      required: true
+  - type: input
+    id: mac-model
+    attributes:
+      label: Mac model and architecture
+      placeholder: "Mac mini M4, arm64; write not run on Mac if applicable"
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Real and fake boundaries
+      description: State which model/provider, audio input, permissions, storage, UI, network, or fixtures were actually exercised.
+      placeholder: |
+        Real:
+        Fake/fixture:
+        Not run:
+    validations:
+      required: true
+  - type: dropdown
+    id: weekly-blocker
+    attributes:
+      label: Does this block the active weekly Candidate?
+      options:
+        - "Yes"
+        - "No"
+        - Unknown
+    validations:
+      required: true
+  - type: textarea
+    id: planning-links
+    attributes:
+      label: Project and sprint context
+      description: If scheduled, link the Project #17 item/state and current checked-in plan. Otherwise write untriaged or not scheduled; open status does not set priority.
+      placeholder: |
+        Project #17 item/state:
+        Checked-in sprint plan/path:
+    validations:
+      required: true
+  - type: textarea
+    id: regression-proof
+    attributes:
+      label: Proposed regression evidence
+      description: What exact automated assertion or fresh Mac scenario should fail before a fix and pass afterward?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or evidence link
+      description: Include concise errors or a durable link. Remove transcript content, patient data, credentials, tokens, and unrelated personal information.
+    validations:
+      required: false
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed sensitive data, transcripts, patient data, credentials, and secrets.
+          required: true
+        - label: I have not described an unperformed manual, model, provider, hardware, or offline check as passing.
+          required: true

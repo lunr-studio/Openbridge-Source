@@ -1,0 +1,71 @@
+OpenBridge V3 — Test Checklist 303 — Finalization Race QA (Mic Checks)
+Version: v1 (2026-08-23)
+Issue: lunr-studio/Openbridge-Beta#303
+PR: lunr-studio/Openbridge-Dev#67 (branch fix/303-finalization-race)
+Build to test: internal QA build of the reviewed PR #67 candidate
+(record the exact build/version here when handed off: ____________ )
+Tester: ____________________    Date: ____________    macOS: ____________
+Microphone used: ____________________    App version/build: ____________
+
+PURPOSE
+Verify the finalization-race fix on real microphone meetings: every finalized
+segment — including the stop-time tail — is transcribed and persisted exactly
+once before the meeting may show as completed.
+
+PRE-FLIGHT
+[ ] P1. QA build launches; version/build matches the candidate record.
+[ ] P2. Microphone permission granted; input device selected in Meetings.
+[ ] P3. No other recording app is holding the microphone.
+
+CHECK 1 — Sub-60-second meeting retains and transcribes its ONLY segment (AC1)
+[ ] 1.1 Start a meeting; speak one continuous sentence pattern for ~20-30s.
+[ ] 1.2 Press Stop.
+[ ] 1.3 Meeting appears in the saved list IMMEDIATELY after Stop.
+[ ] 1.4 Exactly ONE transcript segment exists (no empty second segment).
+[ ] 1.5 The segment text matches what was spoken (no truncation of the tail).
+[ ] 1.6 Meeting state is Completed only after the transcript is visible.
+Notes: ________________________________________________
+
+CHECK 2 — 65-second meeting transcribes BOTH segments exactly once (AC2)
+[ ] 2.1 Start a meeting; speak continuously for 65+ seconds (cross the
+       60-second segment boundary; keep talking through Stop).
+[ ] 2.2 Press Stop WHILE STILL SPEAKING (exercises the stop-time tail).
+[ ] 2.3 Exactly TWO transcript segments exist (full + partial tail).
+[ ] 2.4 No segment is duplicated (scan both segments for repeated text).
+[ ] 2.5 The tail words spoken just before Stop appear in the second segment.
+[ ] 2.6 Meeting state is Completed only after BOTH segments are persisted.
+Notes: ________________________________________________
+
+CHECK 3 — Stop cannot report complete before persistence (AC3, observable form)
+[ ] 3.1 In a fresh meeting, speak a few seconds and press Stop.
+[ ] 3.2 Watch the saved meeting: it must not flip to Completed with a missing
+       or empty transcript while processing is still finishing.
+[ ] 3.3 If transcription fails (no transcript after a reasonable wait), the
+       meeting shows a truthful failure/recovery state and audio is NOT lost.
+Notes: ________________________________________________
+
+CHECK 4 — Failure path preserves audio and exposes recovery (AC4)
+[ ] 4.1 (If a failure can be induced, e.g. model unavailable per QA setup.)
+[ ] 4.2 The meeting does NOT show Completed.
+[ ] 4.3 A clear failure/retry state is shown; the meeting is recoverable.
+[ ] 4.4 Audio files still exist for the meeting after the failure.
+Notes: ________________________________________________
+
+CHECK 5 — Real test commands with visible counts (AC6)
+[ ] 5.1 On the QA build's source checkout, run `swift test`.
+[ ] 5.2 Output shows a real test count (397 tests / 34 suites) — no vacuous
+       pass. (CI evidence: the PR's green Source CI runs.)
+[ ] 5.3 `make test` also completes with real assertions/counts.
+Notes: ________________________________________________
+
+CHECK 6 — Short dictation unchanged (AC7)
+[ ] 6.1 Use normal dictation for a short utterance (not a meeting).
+[ ] 6.2 Behavior is unchanged vs. prior build (transcribes once, no regress).
+Notes: ________________________________________________
+
+RESULT
+Overall: [ ] PASS   [ ] FAIL
+Any failure: attach app log excerpt + steps. Sanitize before attaching:
+no raw transcripts beyond what QA policy allows, no keys, no private paths.
+
+Sign-off (QA): ____________________  Date: ____________

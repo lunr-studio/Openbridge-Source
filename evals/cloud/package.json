@@ -1,0 +1,13 @@
+{
+  "name": "openbridge-cloud-evaluation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs && playwright test --project=D",
+    "test:harness": "node --test tests/*.test.mjs",
+    "eval": "node cli.mjs"
+  },
+  "devDependencies": { "@playwright/test": "1.64.0" }
+}

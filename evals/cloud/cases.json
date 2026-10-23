@@ -1,0 +1,284 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "F1",
+      "requirements": [
+        "OC-01",
+        "OC-03",
+        "OC-04",
+        "OC-05",
+        "OC-10"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "N"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "F2",
+      "requirements": [
+        "OC-06",
+        "OC-08"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "N"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "F3",
+      "requirements": [
+        "OC-02",
+        "OC-07"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "C"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N01",
+      "requirements": [
+        "OC-01"
+      ],
+      "required_lanes": [
+        "D",
+        "N"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N02",
+      "requirements": [
+        "OC-02"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "C"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N03",
+      "requirements": [
+        "OC-02",
+        "OC-07"
+      ],
+      "required_lanes": [
+        "D",
+        "R"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N04",
+      "requirements": [
+        "OC-03",
+        "OC-05"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "N"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N05",
+      "requirements": [
+        "OC-03",
+        "OC-04",
+        "OC-10"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "N"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N06",
+      "requirements": [
+        "OC-05"
+      ],
+      "required_lanes": [
+        "D",
+        "N"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N07",
+      "requirements": [
+        "OC-08"
+      ],
+      "required_lanes": [
+        "D",
+        "R"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N08",
+      "requirements": [
+        "OC-06",
+        "OC-07"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "C"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N09",
+      "requirements": [
+        "OC-09"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "N"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N10",
+      "requirements": [
+        "OC-09"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "N"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N11",
+      "requirements": [
+        "OC-04",
+        "OC-06",
+        "OC-07"
+      ],
+      "required_lanes": [
+        "D",
+        "R",
+        "C"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N12",
+      "requirements": [
+        "OC-10"
+      ],
+      "required_lanes": [
+        "D",
+        "N"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    },
+    {
+      "id": "N13",
+      "requirements": [
+        "OC-04"
+      ],
+      "required_lanes": [
+        "D",
+        "R"
+      ],
+      "product": {
+        "specified": true,
+        "implemented": false,
+        "run": false,
+        "passed": false
+      }
+    }
+  ]
+}

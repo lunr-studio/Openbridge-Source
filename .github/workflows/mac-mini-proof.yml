@@ -1,0 +1,498 @@
+name: Mac Mini Proof
+
+# This is a control-plane workflow. Dispatch it from protected main and pass
+# the candidate commit separately; do not execute a candidate-supplied copy of
+# the proof harness on the persistent runner.
+on:
+  workflow_dispatch:
+    inputs:
+      target_sha:
+        description: "Exact lowercase 40-character Openbridge-Dev candidate SHA to prove"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mac-mini-proof-${{ inputs.target_sha }}
+  cancel-in-progress: false
+
+jobs:
+  prepare-target-check:
+    name: Prepare target-SHA proof check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: read
+    outputs:
+      check_run_id: ${{ steps.create-check.outputs.result }}
+      target_authorization: ${{ steps.authorize-target.outputs.target_authorization }}
+      pull_request_number: ${{ steps.authorize-target.outputs.pull_request_number }}
+      approved_by: ${{ steps.authorize-target.outputs.approved_by }}
+    env:
+      TARGET_SHA: ${{ inputs.target_sha }}
+      CONTROL_SHA: ${{ github.sha }}
+      WORKFLOW_SHA: ${{ github.workflow_sha }}
+      WORKFLOW_REF: ${{ github.workflow_ref }}
+    steps:
+      - name: Validate protected control and target identities
+        shell: bash
+        run: |
+          expected_workflow_ref="${GITHUB_REPOSITORY}/.github/workflows/mac-mini-proof.yml@refs/heads/main"
+          if [[ "$GITHUB_EVENT_NAME" != "workflow_dispatch" || "$GITHUB_REF" != "refs/heads/main" ]]; then
+            echo "Run mac-mini-proof only with workflow_dispatch --ref main." >&2
+            exit 2
+          fi
+          if [[ ! "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "target_sha must be an exact lowercase 40-character commit SHA." >&2
+            exit 2
+          fi
+          if [[ ! "$CONTROL_SHA" =~ ^[0-9a-f]{40}$ || ! "$WORKFLOW_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "GitHub did not supply exact control/workflow commit SHAs." >&2
+            exit 2
+          fi
+          if [[ "$CONTROL_SHA" != "$WORKFLOW_SHA" || "$WORKFLOW_REF" != "$expected_workflow_ref" ]]; then
+            echo "The workflow definition is not the protected main control version." >&2
+            exit 2
+          fi
+
+      - name: Authorize exact candidate before scheduling the Mac
+        id: authorize-target
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        env:
+          TARGET_SHA: ${{ inputs.target_sha }}
+        with:
+          script: |
+            const target = process.env.TARGET_SHA;
+            const authorizedReviewers = new Set(['trishan-lunr', 'alex-lunr']);
+            const {data: repository} = await github.rest.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            if (repository.default_branch !== 'main') {
+              throw new Error('The protected control branch must be main.');
+            }
+            const {data: mainBranch} = await github.rest.repos.getBranch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              branch: 'main',
+            });
+            if (mainBranch.protected !== true) {
+              throw new Error('mac-mini-proof is disabled until GitHub reports main as protected.');
+            }
+            if (
+              mainBranch.commit.sha !== process.env.CONTROL_SHA ||
+              mainBranch.commit.sha !== process.env.WORKFLOW_SHA
+            ) {
+              throw new Error('The dispatched proof controller is no longer the live protected main commit.');
+            }
+            if (target === mainBranch.commit.sha) {
+              core.setOutput('target_authorization', 'protected_main');
+              core.setOutput('pull_request_number', '');
+              core.setOutput('approved_by', '');
+              return;
+            }
+
+            const associated = await github.paginate(
+              github.rest.repos.listPullRequestsAssociatedWithCommit,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                commit_sha: target,
+                per_page: 100,
+              },
+            );
+            const candidates = associated.filter((pull) =>
+              pull.state === 'open' &&
+              pull.base.ref === 'main' &&
+              pull.head.sha === target &&
+              pull.head.repo?.full_name === context.repo.owner + '/' + context.repo.repo
+            );
+            if (candidates.length !== 1) {
+              throw new Error('target_sha must be current main or the exact head of one open same-repository PR to main.');
+            }
+
+            const pull = candidates[0];
+            const reviews = await github.paginate(github.rest.pulls.listReviews, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pull.number,
+              per_page: 100,
+            });
+            const latestByReviewer = new Map();
+            for (const review of reviews) {
+              const login = review.user?.login?.toLowerCase();
+              // The API is chronological. Keep every state so a later
+              // CHANGES_REQUESTED or a DISMISSED approval replaces an older
+              // approval instead of leaving it cached as current.
+              if (login && authorizedReviewers.has(login)) {
+                latestByReviewer.set(login, review);
+              }
+            }
+            const approvers = [...latestByReviewer.entries()]
+              .filter(([, review]) =>
+                review.state === 'APPROVED' && review.commit_id === target
+              )
+              .map(([login]) => login)
+              .sort();
+            if (approvers.length === 0) {
+              throw new Error('The exact PR-head commit requires a current formal approval by Alex or Trishan.');
+            }
+            core.setOutput('target_authorization', 'approved_pull_request');
+            core.setOutput('pull_request_number', String(pull.number));
+            core.setOutput('approved_by', approvers[0]);
+
+      # This write token exists only on a GitHub-hosted runner, before any
+      # candidate code runs on the persistent Mac.
+      - name: Create target-SHA check run
+        id: create-check
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        env:
+          TARGET_SHA: ${{ inputs.target_sha }}
+        with:
+          result-encoding: string
+          script: |
+            const target = process.env.TARGET_SHA;
+            const {data} = await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'mac-mini-proof',
+              head_sha: target,
+              status: 'in_progress',
+              details_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              external_id: `mac-mini-proof:${context.runId}:${process.env.GITHUB_RUN_ATTEMPT}:${target}`,
+              output: {
+                title: 'Protected Mac proof is running',
+                summary: `Protected-main control is proving candidate ${target}.`,
+              },
+            });
+            return String(data.id);
+
+  mac-mini-proof:
+    name: mac-mini-proof
+    needs: prepare-target-check
+    runs-on: [self-hosted, macOS, ARM64, franklin-mac-mini]
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      pull-requests: read
+    env:
+      TARGET_SHA: ${{ inputs.target_sha }}
+      CONTROL_SHA: ${{ github.sha }}
+      WORKFLOW_SHA: ${{ github.workflow_sha }}
+      WORKFLOW_REF: ${{ github.workflow_ref }}
+      OPENBRIDGE_RUNNER_LABELS: self-hosted,macOS,ARM64,franklin-mac-mini
+
+    steps:
+      # The runner may have waited behind another job after hosted preflight.
+      # Revalidate with this job's read-only token before checking out or
+      # executing any candidate-controlled source.
+      - name: Revalidate live protected control after Mac queue
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        env:
+          TARGET_AUTHORIZATION: ${{ needs.prepare-target-check.outputs.target_authorization }}
+          PULL_REQUEST_NUMBER: ${{ needs.prepare-target-check.outputs.pull_request_number }}
+          APPROVED_BY: ${{ needs.prepare-target-check.outputs.approved_by }}
+        with:
+          script: |
+            const target = process.env.TARGET_SHA;
+            const authorization = process.env.TARGET_AUTHORIZATION;
+            const pullNumberText = process.env.PULL_REQUEST_NUMBER || '';
+            const approvedBy = (process.env.APPROVED_BY || '').toLowerCase();
+            const authorizedReviewers = new Set(['trishan-lunr', 'alex-lunr']);
+            const {data: mainBranch} = await github.rest.repos.getBranch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              branch: 'main',
+            });
+            if (mainBranch.protected !== true) {
+              throw new Error('mac-mini-proof is disabled until GitHub reports main as protected.');
+            }
+            if (
+              mainBranch.commit.sha !== process.env.CONTROL_SHA ||
+              mainBranch.commit.sha !== process.env.WORKFLOW_SHA
+            ) {
+              throw new Error('The queued proof controller is no longer the live protected main commit.');
+            }
+            if (authorization === 'protected_main') {
+              if (target !== mainBranch.commit.sha || pullNumberText !== '' || approvedBy !== '') {
+                throw new Error('The queued protected-main authorization no longer matches its target.');
+              }
+              return;
+            }
+            if (authorization !== 'approved_pull_request') {
+              throw new Error('The queued target has no recognized authorization.');
+            }
+
+            const pullNumber = Number(pullNumberText);
+            if (
+              !Number.isSafeInteger(pullNumber) ||
+              pullNumber <= 0 ||
+              !authorizedReviewers.has(approvedBy)
+            ) {
+              throw new Error('The queued pull-request authorization metadata is invalid.');
+            }
+            const {data: pull} = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pullNumber,
+            });
+            if (
+              pull.state !== 'open' ||
+              pull.base.ref !== 'main' ||
+              pull.head.sha !== target ||
+              pull.head.repo?.full_name?.toLowerCase() !==
+                `${context.repo.owner}/${context.repo.repo}`.toLowerCase()
+            ) {
+              throw new Error('The queued pull request is no longer open at the exact authorized head.');
+            }
+            const reviews = await github.paginate(github.rest.pulls.listReviews, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pullNumber,
+              per_page: 100,
+            });
+            const latestByReviewer = new Map();
+            for (const review of reviews) {
+              const login = review.user?.login?.toLowerCase();
+              if (login && authorizedReviewers.has(login)) {
+                latestByReviewer.set(login, review);
+              }
+            }
+            const currentApprovers = [...latestByReviewer.entries()]
+              .filter(([, review]) =>
+                review.state === 'APPROVED' && review.commit_id === target
+              )
+              .map(([login]) => login);
+            if (!currentApprovers.includes(approvedBy)) {
+              throw new Error('The queued exact-head approval is no longer current.');
+            }
+
+      - name: Resolve exact candidate identity
+        id: source
+        shell: bash
+        run: |
+          if [[ ! "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "target_sha must be an exact lowercase 40-character commit SHA." >&2
+            exit 2
+          fi
+          echo "sha=$TARGET_SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Check out protected proof control
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          path: proof-control
+          fetch-depth: 1
+          persist-credentials: false
+          clean: true
+
+      - name: Check out exact candidate source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ steps.source.outputs.sha }}
+          path: source
+          fetch-depth: 1
+          persist-credentials: false
+          clean: true
+
+      - name: Build, test, bundle, and launch-smoke exact source
+        env:
+          OPENBRIDGE_PROOF_MODE: ci_automated
+          OPENBRIDGE_EXPECTED_SHA: ${{ steps.source.outputs.sha }}
+          OPENBRIDGE_TARGET_REPOSITORY: ${{ github.workspace }}/source
+          OPENBRIDGE_GITHUB_EVENT_NAME: ${{ github.event_name }}
+          OPENBRIDGE_GITHUB_WORKFLOW_REF: ${{ github.workflow_ref }}
+          OPENBRIDGE_GITHUB_WORKFLOW_SHA: ${{ github.workflow_sha }}
+          OPENBRIDGE_GITHUB_CONTROL_SHA: ${{ github.sha }}
+          OPENBRIDGE_GITHUB_RUN_ID: ${{ github.run_id }}
+          OPENBRIDGE_GITHUB_RUN_ATTEMPT: ${{ github.run_attempt }}
+          OPENBRIDGE_GITHUB_JOB: mac-mini-proof
+          OPENBRIDGE_GITHUB_CHECK_RUN_ID: ${{ needs.prepare-target-check.outputs.check_run_id }}
+          OPENBRIDGE_GITHUB_TARGET_AUTHORIZATION: ${{ needs.prepare-target-check.outputs.target_authorization }}
+          OPENBRIDGE_GITHUB_PULL_REQUEST_NUMBER: ${{ needs.prepare-target-check.outputs.pull_request_number }}
+          OPENBRIDGE_GITHUB_APPROVED_BY: ${{ needs.prepare-target-check.outputs.approved_by }}
+        run: ./proof-control/scripts/mac_dev_proof.sh
+
+      - name: Upload sanitized exact-SHA receipt
+        if: always() && steps.source.outputs.sha != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: mac-mini-proof-${{ steps.source.outputs.sha }}
+          path: source/.build/mac-mini-proof/mac-mini-proof-${{ steps.source.outputs.sha }}.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+
+  finalize-target-check:
+    name: Finalize target-SHA proof check
+    if: always() && needs.prepare-target-check.result == 'success'
+    needs: [prepare-target-check, mac-mini-proof]
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      checks: write
+      pull-requests: read
+    steps:
+      # Keep the write token off the self-hosted runner even after candidate
+      # commands finish; candidate code could otherwise leave a credential
+      # stealing process behind.
+      - name: Publish exact-target conclusion
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        env:
+          CHECK_RUN_ID: ${{ needs.prepare-target-check.outputs.check_run_id }}
+          PROOF_RESULT: ${{ needs.mac-mini-proof.result }}
+          CONTROL_SHA: ${{ github.sha }}
+          WORKFLOW_SHA: ${{ github.workflow_sha }}
+          TARGET_SHA: ${{ inputs.target_sha }}
+          TARGET_AUTHORIZATION: ${{ needs.prepare-target-check.outputs.target_authorization }}
+          PULL_REQUEST_NUMBER: ${{ needs.prepare-target-check.outputs.pull_request_number }}
+          APPROVED_BY: ${{ needs.prepare-target-check.outputs.approved_by }}
+        with:
+          script: |
+            const checkRunId = Number(process.env.CHECK_RUN_ID);
+            if (!Number.isSafeInteger(checkRunId) || checkRunId <= 0) {
+              core.setFailed('Missing positive target check-run ID.');
+              return;
+            }
+            const proofSucceeded = process.env.PROOF_RESULT === 'success';
+            let authorizationFresh = false;
+            let authorizationFailure = '';
+            if (proofSucceeded) {
+              try {
+                const target = process.env.TARGET_SHA;
+                const authorization = process.env.TARGET_AUTHORIZATION;
+                const pullNumberText = process.env.PULL_REQUEST_NUMBER || '';
+                const approvedBy = (process.env.APPROVED_BY || '').toLowerCase();
+                const authorizedReviewers = new Set(['trishan-lunr', 'alex-lunr']);
+                const {data: mainBranch} = await github.rest.repos.getBranch({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  branch: 'main',
+                });
+                if (
+                  mainBranch.protected !== true ||
+                  mainBranch.commit.sha !== process.env.CONTROL_SHA ||
+                  mainBranch.commit.sha !== process.env.WORKFLOW_SHA
+                ) {
+                  throw new Error('The proof controller is no longer the live protected main commit.');
+                }
+                if (authorization === 'protected_main') {
+                  if (target !== mainBranch.commit.sha || pullNumberText !== '' || approvedBy !== '') {
+                    throw new Error('The protected-main authorization no longer matches its target.');
+                  }
+                  authorizationFresh = true;
+                } else if (authorization === 'approved_pull_request') {
+                  const pullNumber = Number(pullNumberText);
+                  if (
+                    !Number.isSafeInteger(pullNumber) ||
+                    pullNumber <= 0 ||
+                    !authorizedReviewers.has(approvedBy)
+                  ) {
+                    throw new Error('The pull-request authorization metadata is invalid.');
+                  }
+                  const {data: pull} = await github.rest.pulls.get({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    pull_number: pullNumber,
+                  });
+                  if (
+                    pull.state !== 'open' ||
+                    pull.base.ref !== 'main' ||
+                    pull.head.sha !== target ||
+                    pull.head.repo?.full_name?.toLowerCase() !==
+                      `${context.repo.owner}/${context.repo.repo}`.toLowerCase()
+                  ) {
+                    throw new Error('The pull request is no longer open at the exact authorized head.');
+                  }
+                  const reviews = await github.paginate(github.rest.pulls.listReviews, {
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    pull_number: pullNumber,
+                    per_page: 100,
+                  });
+                  const latestByReviewer = new Map();
+                  for (const review of reviews) {
+                    const login = review.user?.login?.toLowerCase();
+                    if (login && authorizedReviewers.has(login)) {
+                      latestByReviewer.set(login, review);
+                    }
+                  }
+                  const currentApprovers = [...latestByReviewer.entries()]
+                    .filter(([, review]) =>
+                      review.state === 'APPROVED' && review.commit_id === target
+                    )
+                    .map(([login]) => login);
+                  if (!currentApprovers.includes(approvedBy)) {
+                    throw new Error('The exact-head approval is no longer current.');
+                  }
+                  authorizationFresh = true;
+                } else {
+                  throw new Error('The target has no recognized authorization.');
+                }
+              } catch (error) {
+                const detail = error instanceof Error ? error.message : String(error);
+                authorizationFailure = `Authorization revalidation failed: ${detail}`;
+              }
+            }
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            let proofDetailsUrl = runUrl;
+            let jobBindingFailure = '';
+            try {
+              const jobs = await github.paginate(
+                github.rest.actions.listJobsForWorkflowRunAttempt,
+                {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: context.runId,
+                  attempt_number: Number(process.env.GITHUB_RUN_ATTEMPT),
+                  per_page: 100,
+                },
+              );
+              const proofJobs = jobs.filter((job) => job.name === 'mac-mini-proof');
+              const proofJobId = proofJobs.length === 1 ? Number(proofJobs[0].id) : 0;
+              if (!Number.isSafeInteger(proofJobId) || proofJobId <= 0) {
+                jobBindingFailure =
+                  `Could not bind the target check to one exact Mac proof job; found ${proofJobs.length}.`;
+              } else {
+                proofDetailsUrl = `${runUrl}/job/${proofJobId}`;
+              }
+            } catch (error) {
+              const detail = error instanceof Error ? error.message : String(error);
+              jobBindingFailure = `Could not query the exact Mac proof job: ${detail}`;
+            }
+            const passed =
+              proofSucceeded && authorizationFresh && jobBindingFailure === '';
+            let failureSummary = '';
+            if (jobBindingFailure !== '') {
+              failureSummary = `${jobBindingFailure} The proof evidence was rejected.`;
+            } else if (!proofSucceeded) {
+              failureSummary = `The self-hosted proof job ended with ${process.env.PROOF_RESULT}.`;
+            } else if (!authorizationFresh) {
+              failureSummary = `${authorizationFailure} The completed proof evidence was rejected.`;
+            }
+            await github.rest.checks.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              check_run_id: checkRunId,
+              status: 'completed',
+              conclusion: passed ? 'success' : 'failure',
+              details_url: proofDetailsUrl,
+              output: {
+                title: passed ? 'Protected Mac proof passed' : 'Protected Mac proof failed',
+                summary: passed
+                  ? 'The exact candidate receipt was produced and uploaded.'
+                  : failureSummary,
+              },
+            });
+            const finalizerFailures = [jobBindingFailure];
+            if (proofSucceeded && !authorizationFresh) {
+              finalizerFailures.push(authorizationFailure);
+            }
+            const finalizerFailure = finalizerFailures.filter(Boolean).join(' ');
+            if (finalizerFailure !== '') {
+              core.setFailed(finalizerFailure);
+            }

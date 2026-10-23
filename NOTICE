@@ -1,0 +1,19 @@
+OpenBridge
+Copyright 2026 lunr-studio
+
+This source project includes contributions by the OpenBridge contributors.
+Project-authored source and documentation are licensed under Apache License 2.0.
+Existing source attribution and third-party licence files are retained.
+
+The Python runtime dependencies are downloaded separately. Third-party software,
+models and resources retain their upstream terms. The complete locked versions
+and hashes are in requirements-lock.txt; direct dependencies and bundled font
+licences are documented in THIRD_PARTY_NOTICES.md and
+docs/governance/DEPENDENCY_LICENSE_INVENTORY.json.
+
+No FFmpeg binary, model weights, compiled application, packaged runtime or DMG
+is distributed by this source repository. FFmpeg is an external dependency;
+any binary distributor must meet the licence obligations of their chosen build.
+
+OpenBridge names, marks and original Lunr Studio artwork remain reserved assets.
+See docs/governance/TRADEMARK_AND_ASSET_POLICY.md.

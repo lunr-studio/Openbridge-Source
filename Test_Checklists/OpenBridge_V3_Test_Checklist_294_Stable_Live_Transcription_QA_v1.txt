@@ -1,0 +1,96 @@
+OpenBridge V3 — Test Checklist 294 — Stable Live Transcription QA
+Version: v1 (2026-08-26)
+Issue: lunr-studio/Openbridge-Beta#294
+PR: lunr-studio/Openbridge-Dev#69 (branch fix/294-stable-live-segments)
+Build to test: internal QA build of the reviewed PR #69 candidate
+(record the exact build/version here when handed off: ____________ )
+Tester: ____________    Date: ____________    macOS: ____________
+
+PURPOSE
+Verify stable, timestamped live-transcription spans appear DURING an active
+meeting: utterance-boundary/max-duration chunk rotation with real overlap,
+no repeated lines at chunk boundaries (exact-match overlap dedup), bounded
+backlog under normal conversation, capture never dropped, audio preserved on
+failure, and replay does not repeat the shared overlap at transitions.
+
+PRE-FLIGHT
+[ ] P1. QA build launches; version/build matches the candidate record.
+[ ] P2. Terminal helper ready (below) for manifest/audio inspection.
+[ ] P3. A disposable meeting exists for each check (fresh title per run so
+       saved-meetings rows are unambiguous).
+
+Helper — inspect the latest meeting:
+LATEST=$(ls -t ~/Library/Application\ Support/OpenBridge/Meetings/ | head -1)
+ls ~/Library/Application\ Support/OpenBridge/Meetings/$LATEST/audio/
+python3 -c "
+import json,os
+p=os.path.expanduser('~/Library/Application Support/OpenBridge/Meetings/$LATEST/manifest.json')
+m=json.load(open(p))
+print('state:', m['state'], '| segments:', len(m.get('segments',[])), '| audio:', len(m.get('audioSegments',[])))
+print('chunkBoundaries:', len(m.get('chunkBoundaries',[])))
+[print(' ', round(s.get('startOffset') or 0,1), '-', round(s.get('endOffset') or 0,1), (s.get('text') or '')[:60]) for s in m.get('segments',[])]"
+
+CHECK 1 — Live segments appear DURING the active meeting (AC1)
+[ ] 1.1 Start a meeting; speak normally.
+[ ] 1.2 WHILE still recording, open the meeting transcript — spans appear
+       during the meeting (not only after Stop).
+[ ] 1.3 Each span carries a start/end offset (helper) and the audio segment
+       reference resolves to a WAV.
+Notes: ________________________________________________
+
+CHECK 2 — Chunk rotation honors the policy (scope)
+[ ] 2.1 Continuous speech: chunk WAVs rotate roughly every 10–12 s (helper
+       counts audio files while speaking).
+[ ] 2.2 Pause ~1 s: an utterance-boundary chunk closes; ~0.5–0.75 s of
+       overlap is carried into the next chunk.
+[ ] 2.3 Quiet room (no speech): NO silence-only chunk files are created.
+Notes: ________________________________________________
+
+CHECK 3 — No repeated lines at chunk boundaries (AC2)
+[ ] 3.1 Read the transcript after a few rotations — no duplicated boundary
+       words where chunks join.
+[ ] 3.2 If the speaker GENUINELY repeats a phrase, it is kept (we do not
+       over-trim).
+[ ] 3.3 Formatted transcripts (if formatting enabled) keep their paragraph
+       structure after overlap removal.
+Notes: ________________________________________________
+
+CHECK 4 — Capture continues; audio preserved on failure (AC5/AC6)
+[ ] 4.1 Record 15–20 min of normal conversation. No growing backlog, no
+       dropped capture (audio file count tracks wall time within tolerance).
+[ ] 4.2 Force-quit mid-meeting, relaunch: ALL audio segments are intact and
+       the recovery surface (retry/finalize) is offered.
+[ ] 4.3 (Induce failure per QA setup, e.g. engine/model unavailable.) A
+       failed transcription leaves audio recoverable and never reports a
+       false success.
+Notes: ________________________________________________
+
+CHECK 5 — Replay does not repeat the overlap (wave-4/5)
+[ ] 5.1 Open a multi-chunk meeting in Replay and play through a boundary.
+[ ] 5.2 No speech is repeated at the transition (leading overlap skipped).
+[ ] 5.3 If an intermediate audio file is missing, the adjacent surviving
+       copy still plays in full (overlap NOT trimmed away).
+Notes: ________________________________________________
+
+CHECK 6 — Watch items from review (real-hardware validation)
+[ ] 6.1 Under sustained UI load during a long meeting, chunk audio order
+       stays correct (no out-of-order segments).
+[ ] 6.2 After any boundary dedup, the canonical transcript never contains a
+       duplicated word that was genuinely repeated by the speaker.
+[ ] 6.3 If Stop ever fails to save the final chunk, the app keeps the
+       meeting open with a clear error and does not let you navigate away
+       and lose the recording.
+Notes: ________________________________________________
+
+CHECK 7 — Automated gates on the candidate source
+[ ] 7.1 swift test: full-suite count visible on the candidate checkout.
+[ ] 7.2 swift build -c release: green.
+[ ] 7.3 CI on the PR head: 3/3 success.
+Notes: ________________________________________________
+
+RESULT
+Overall: [ ] PASS   [ ] FAIL
+Failures: attach sanitized log excerpts (no raw transcripts beyond QA
+policy, no keys, no private paths). Post results to #294 / PR #69.
+
+Sign-off (QA): ____________________  Date: ____________

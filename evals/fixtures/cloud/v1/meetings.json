@@ -1,0 +1,86 @@
+{
+  "fixture_version": "openbridge-cloud-goldens-v1",
+  "library_id": "lunr_fixture",
+  "clock": "2026-10-10T14:05:00Z",
+  "timezone": "America/New_York",
+  "meetings": [
+    {
+      "session_id": "api_yesterday",
+      "user_id": "uid_alex",
+      "timestamp_start": "2026-10-09T13:00:00Z",
+      "timestamp_end": "2026-10-09T13:15:00Z",
+      "retention_policy": "autoDeleteAfter7Days",
+      "segments": [
+        {
+          "id": "api1",
+          "meetingID": "api_yesterday",
+          "sequence": 0,
+          "startOffset": 0.0,
+          "endOffset": 10.0,
+          "sourceLabel": "Microphone",
+          "text": "Use schema_version 1 and keep session_id equal to the original meeting ID.",
+          "isFinal": true
+        },
+        {
+          "id": "api2",
+          "meetingID": "api_yesterday",
+          "sequence": 1,
+          "startOffset": 10.0,
+          "endOffset": 20.0,
+          "sourceLabel": "Microphone",
+          "text": "Deduplicate ingestion by the meeting ID and original revision; retries must not create duplicate records.",
+          "isFinal": true
+        }
+      ]
+    },
+    {
+      "session_id": "sync_today",
+      "user_id": "uid_alex",
+      "timestamp_start": "2026-10-10T13:00:00Z",
+      "timestamp_end": "2026-10-10T13:15:00Z",
+      "retention_policy": "autoDeleteAfter7Days",
+      "segments": [
+        {
+          "id": "sync1",
+          "meetingID": "sync_today",
+          "sequence": 0,
+          "startOffset": 0.0,
+          "endOffset": 10.0,
+          "sourceLabel": "Microphone",
+          "text": "Use Playwright for HTTP and MCP contracts. Native capture controls and macOS notifications need separate native Mac checks.",
+          "isFinal": true
+        },
+        {
+          "id": "sync2",
+          "meetingID": "sync_today",
+          "sequence": 1,
+          "startOffset": 10.0,
+          "endOffset": 20.0,
+          "sourceLabel": "Microphone",
+          "text": "Alex will add unauthorized-access and duplicate-retry tests. Trishan will review the native completion notification.",
+          "isFinal": true
+        }
+      ]
+    },
+    {
+      "session_id": "live_today",
+      "user_id": "uid_alex",
+      "timestamp_start": "2026-10-10T14:00:00Z",
+      "timestamp_end": null,
+      "retention_policy": "autoDeleteAfter7Days",
+      "snapshot_at": "2026-10-10T14:05:00Z",
+      "segments": [
+        {
+          "id": "live1",
+          "meetingID": "live_today",
+          "sequence": 0,
+          "startOffset": 0.0,
+          "endOffset": 10.0,
+          "sourceLabel": "Microphone",
+          "text": "Keep yesterday's API schema unchanged. Alex is checking duplicate retries today.",
+          "isFinal": false
+        }
+      ]
+    }
+  ]
+}

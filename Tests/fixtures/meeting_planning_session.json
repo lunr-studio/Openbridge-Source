@@ -1,0 +1,168 @@
+{
+  "fixture_id": "planning-session-v1",
+  "title": "Product planning session with prior-context retrieval",
+  "description": "A scripted 5-minute planning meeting where participants discuss a roadmap, ask about prior decisions, and reach a decision with action items. Tests silence, prior-context retrieval, decision capture, and action capture.",
+  "workspace_id": "ws-test-001",
+  "duration_seconds": 300,
+  "transcript_spans": [
+    {
+      "span_id": "s1",
+      "text": "Alright, let's start the planning session. We need to figure out the Q4 roadmap.",
+      "start_seconds": 2,
+      "end_seconds": 8,
+      "speaker_label": "Room"
+    },
+    {
+      "span_id": "s2",
+      "text": "First, does anyone remember what we decided about the pricing tier change last quarter?",
+      "start_seconds": 10,
+      "end_seconds": 16,
+      "speaker_label": "Room",
+      "corrections": ["First, does anyone recall what we decided about the pricing tier change last quarter?"]
+    },
+    {
+      "span_id": "s3",
+      "text": "Okay so we are looking at three main priorities. The transcription engine upgrade, the meeting intelligence feature, and the release hardening.",
+      "start_seconds": 30,
+      "end_seconds": 42,
+      "speaker_label": "Room"
+    },
+    {
+      "span_id": "s4",
+      "text": "I think we should prioritize the meeting intelligence since that is what Trishan asked for. Can someone check what the latency target is?",
+      "start_seconds": 45,
+      "end_seconds": 54,
+      "speaker_label": "Room"
+    },
+    {
+      "span_id": "s5",
+      "text": "Let me check the prior meeting notes on that.",
+      "start_seconds": 56,
+      "end_seconds": 60,
+      "speaker_label": "Room"
+    },
+    {
+      "span_id": "s6",
+      "text": "The latency target from the V3 epic is under four seconds for stable transcript and under seven seconds for source-grounded cards.",
+      "start_seconds": 120,
+      "end_seconds": 130,
+      "speaker_label": "Room"
+    },
+    {
+      "span_id": "s7",
+      "text": "Great. So decision: we prioritize meeting intelligence first, then release hardening, then the engine upgrade.",
+      "start_seconds": 140,
+      "end_seconds": 148,
+      "speaker_label": "Room"
+    },
+    {
+      "span_id": "s8",
+      "text": "Action item: Franklin will build the replay harness by end of week. Trishan will review the signed build process.",
+      "start_seconds": 150,
+      "end_seconds": 158,
+      "speaker_label": "Room"
+    },
+    {
+      "span_id": "s9",
+      "text": "One more thing. The pricing discussion from last quarter, we decided to keep the current tier structure for now.",
+      "start_seconds": 200,
+      "end_seconds": 208,
+      "speaker_label": "Room"
+    },
+    {
+      "span_id": "s10",
+      "text": "Alright, I think we are done. Let's wrap up.",
+      "start_seconds": 290,
+      "end_seconds": 294,
+      "speaker_label": "Room"
+    }
+  ],
+  "expected_moments": [
+    {
+      "moment_id": "m1",
+      "timestamp": 15,
+      "kind": "prior_context",
+      "description": "User asks about prior pricing decision. System should retrieve from seeded prior meeting.",
+      "expected_card": "Last quarter we decided to keep the current pricing tier structure.",
+      "expected_sources": ["prior-pricing-review-2026q3"]
+    },
+    {
+      "moment_id": "m2",
+      "timestamp": 52,
+      "kind": "prior_context",
+      "description": "User asks about latency targets. System should retrieve from V3 epic prior meeting.",
+      "expected_card": "V3 latency targets: P95 stable transcript under 4 seconds, P95 source-grounded cards under 7 seconds.",
+      "expected_sources": ["prior-v3-epic-planning"]
+    },
+    {
+      "moment_id": "m3",
+      "timestamp": 80,
+      "kind": "silence",
+      "description": "Extended silence while someone checks notes. System should NOT produce a card here.",
+      "expected_card": null
+    },
+    {
+      "moment_id": "m4",
+      "timestamp": 145,
+      "kind": "decision",
+      "description": "Explicit prioritization decision made. System should capture this as a decision card.",
+      "expected_card": "Decision: Prioritize meeting intelligence first, then release hardening, then engine upgrade.",
+      "expected_sources": []
+    },
+    {
+      "moment_id": "m5",
+      "timestamp": 155,
+      "kind": "action",
+      "description": "Action items assigned. System should capture these.",
+      "expected_card": "Action items: Franklin builds replay harness (this week). Trishan reviews signed build process.",
+      "expected_sources": []
+    },
+    {
+      "moment_id": "m6",
+      "timestamp": 205,
+      "kind": "explicit_answer",
+      "description": "Participant answers the earlier pricing question from memory. System should link to prior context.",
+      "expected_card": "Confirmed: Current pricing tier structure retained from Q3 decision.",
+      "expected_sources": ["prior-pricing-review-2026q3"]
+    },
+    {
+      "moment_id": "m7",
+      "timestamp": 250,
+      "kind": "abstention",
+      "description": "No specific question asked, no decision needed. System should abstain from showing a card.",
+      "expected_card": null
+    }
+  ],
+  "prior_meetings": [
+    {
+      "meeting_id": "prior-pricing-review-2026q3",
+      "title": "Q3 2026 Pricing Review",
+      "summary": "Reviewed pricing tier structure. Decided to maintain current tiers for Q4.",
+      "key_facts": [
+        "Current pricing: Free, Pro at $12/mo, Team at $29/mo",
+        "Decision: Keep current tier structure for Q4 2026",
+        "Revisit in Q1 2027 based on adoption metrics"
+      ],
+      "transcript_excerpts": [
+        "We looked at the competitive landscape and decided our current pricing is well-positioned.",
+        "The decision is to keep the current tier structure for now."
+      ]
+    },
+    {
+      "meeting_id": "prior-v3-epic-planning",
+      "title": "V3 Epic Planning Session",
+      "summary": "Defined V3 meeting intelligence scope and latency targets.",
+      "key_facts": [
+        "P95 stable transcript latency target: under 4 seconds",
+        "P95 source-grounded card latency target: under 7 seconds",
+        "At least 85% of proactive cards should be judged relevant",
+        "Fewer than 1 irrelevant proactive card per 15 minutes"
+      ],
+      "transcript_excerpts": [
+        "The latency gate is P95 stable transcript under four seconds.",
+        "Source-grounded cards should appear within seven seconds at P95."
+      ]
+    }
+  ],
+  "corrected_transcript": "Alright, let's start the planning session. We need to figure out the Q4 roadmap. First, does anyone recall what we decided about the pricing tier change last quarter? Okay so we are looking at three main priorities: the transcription engine upgrade, the meeting intelligence feature, and the release hardening. I think we should prioritize the meeting intelligence since that is what Trishan asked for. Can someone check what the latency target is? Let me check the prior meeting notes on that. The latency target from the V3 epic is under four seconds for stable transcript and under seven seconds for source-grounded cards. Great. So decision: we prioritize meeting intelligence first, then release hardening, then the engine upgrade. Action item: Franklin will build the replay harness by end of week. Trishan will review the signed build process. One more thing. The pricing discussion from last quarter, we decided to keep the current tier structure for now. Alright, I think we are done. Let's wrap up."
+}

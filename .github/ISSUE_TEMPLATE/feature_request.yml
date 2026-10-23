@@ -1,0 +1,112 @@
+name: Feature request
+description: Propose one testable OpenBridge outcome
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe one small outcome that can move through implementation, Mac QA, and acceptance. Read `docs/process/DELIVERY_AND_WEEKLY_RELEASE.md` before marking it Ready.
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Who has the problem, and what can they not do today?
+    validations:
+      required: true
+  - type: textarea
+    id: journey
+    attributes:
+      label: Vertical user journey
+      description: Name the real production entry point, complete behavior, visible/saved result, and important failure behavior.
+      placeholder: |
+        When the user starts at...
+        OpenBridge...
+        The user sees or can retrieve...
+        If ... fails, OpenBridge...
+    validations:
+      required: true
+  - type: dropdown
+    id: delivery-level
+    attributes:
+      label: Target delivery level
+      description: A lower level does not imply a higher one. Debug/fixture-only work is Component.
+      options:
+        - Component
+        - Integrated
+        - Candidate
+        - Accepted Beta
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria and evidence matrix
+      description: One row per criterion. Name evidence type, exact command/scenario, real or fake dependency, evidence owner, and current status.
+      placeholder: |
+        | Acceptance criterion | Evidence type | Exact command/scenario | Real/fake dependency | Owner | Status/link |
+        | --- | --- | --- | --- | --- | --- |
+        | ... | ... | ... | ... | Franklin/Alex/Trishan | Not run |
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope, non-goals, and split plan
+      description: List included layers and non-goals. Above five production files or roughly 500 production lines (tests excluded), propose a split or explain why one coherent vertical is safer.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Real dependencies and Mac requirements
+      description: Name required models/providers, microphone or system audio, macOS permissions/frameworks, persistence, network access, and who can exercise each real boundary.
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Primary component
+      options:
+        - macOS app (Swift)
+        - Python engine
+        - Source setup / build
+        - Documentation
+        - Cross-component
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What smaller slice or simpler approach was considered?
+    validations:
+      required: false
+  - type: textarea
+    id: planning-links
+    attributes:
+      label: Project and sprint-plan links
+      description: Before Ready, link the Project #17 item/state and current checked-in plan, or say not scheduled. An open issue does not set priority.
+      placeholder: |
+        Project #17 item/state:
+        Checked-in sprint plan/path:
+        Canonical product document:
+        Reconciliation needed:
+    validations:
+      required: true
+  - type: checkboxes
+    id: readiness
+    attributes:
+      label: Ready checklist
+      options:
+        - label: The canonical product document and issue agree on this outcome.
+          required: true
+        - label: If scheduled, the Project item, canonical issue, and checked-in sprint plan link bidirectionally and agree on current intent/state.
+          required: true
+        - label: This will not enter Franklin's implementation lane until it is the one active item or Trishan explicitly pauses/replaces the active item.
+          required: true
+        - label: No acceptance row relies on an unnamed person or an unsupported claim that a fake proves a real boundary.
+          required: true
+        - label: No sensitive transcript, patient data, credential, or secret is included.
+          required: true

@@ -1,0 +1,18 @@
+{
+  "asset": "sync_today.wav",
+  "sha256": "2e67e0e3516ce38ebb8633ca1faf99f8c390882617d4282e145a90b975ea4e5e",
+  "format": {
+    "channels": 1,
+    "sample_rate": 16000,
+    "sample_width_bytes": 2,
+    "frames": 245269
+  },
+  "generation": {
+    "tool": "/usr/bin/say",
+    "voice": "Samantha en_US",
+    "os": "macOS 26.6.2 (25G83)",
+    "voice_version": "system voice supplied with this OS; no independent voice build exposed",
+    "command": "say -v Samantha -f evals/fixtures/cloud/v1/sync_today.txt -o evals/fixtures/cloud/v1/sync_today.wav --file-format=WAVE --data-format=LEI16@16000"
+  },
+  "claim": "Synthetic speech fixture only; no ASR/native capture run is implied."
+}

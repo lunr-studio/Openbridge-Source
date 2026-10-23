@@ -1,0 +1,16 @@
+# Mac proof infrastructure is a release trust root. Repository rules must
+# require Code Owner approval on protected main; this file is advisory until
+# that server-side rule is enabled with no bypass actors.
+/.github/CODEOWNERS @trishan-lunr
+/.github/workflows/mac-mini-proof.yml @trishan-lunr
+/.github/workflows/ci.yml @trishan-lunr
+/.github/workflows/release-source-proof.yml @trishan-lunr
+/openbridge_engine/model_snapshots.lock.json @trishan-lunr
+/openbridge_engine/model_snapshot_verifier.py @trishan-lunr
+/openbridge_engine/model_integrity.py @trishan-lunr
+/scripts/mac_dev_proof.sh @trishan-lunr
+/scripts/tests/test_mac_dev_proof.py @trishan-lunr
+/requirements-lock.txt @trishan-lunr
+/Makefile @trishan-lunr
+/docs/setup/MAC_MINI_PROOF_RUNNER.md @trishan-lunr
+/docs/setup/MAC_MINI_OWNER_SETUP_FOR_FRANKLIN.md @trishan-lunr

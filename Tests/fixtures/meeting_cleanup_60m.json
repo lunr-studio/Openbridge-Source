@@ -1,0 +1,1207 @@
+{
+  "fixtureID": "clean-00-synthetic-60m-v1",
+  "meetingID": "clean-00-60m-meeting",
+  "durationSeconds": 3600.0,
+  "segments": [
+    {
+      "id": "clean-00-60m-meeting-segment-0000",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 0,
+      "startOffset": 0.0,
+      "endOffset": 30.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0001",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 1,
+      "startOffset": 30.0,
+      "endOffset": 60.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0002",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 2,
+      "startOffset": 60.0,
+      "endOffset": 90.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0003",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 3,
+      "startOffset": 90.0,
+      "endOffset": 120.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0004",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 4,
+      "startOffset": 120.0,
+      "endOffset": 150.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0005",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 5,
+      "startOffset": 150.0,
+      "endOffset": 180.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0006",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 6,
+      "startOffset": 180.0,
+      "endOffset": 210.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0007",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 7,
+      "startOffset": 210.0,
+      "endOffset": 240.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0008",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 8,
+      "startOffset": 240.0,
+      "endOffset": 270.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0009",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 9,
+      "startOffset": 270.0,
+      "endOffset": 300.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0010",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 10,
+      "startOffset": 300.0,
+      "endOffset": 330.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0011",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 11,
+      "startOffset": 330.0,
+      "endOffset": 360.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0012",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 12,
+      "startOffset": 360.0,
+      "endOffset": 390.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0013",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 13,
+      "startOffset": 390.0,
+      "endOffset": 420.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0014",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 14,
+      "startOffset": 420.0,
+      "endOffset": 450.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0015",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 15,
+      "startOffset": 450.0,
+      "endOffset": 480.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0016",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 16,
+      "startOffset": 480.0,
+      "endOffset": 510.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0017",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 17,
+      "startOffset": 510.0,
+      "endOffset": 540.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0018",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 18,
+      "startOffset": 540.0,
+      "endOffset": 570.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0019",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 19,
+      "startOffset": 570.0,
+      "endOffset": 600.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0020",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 20,
+      "startOffset": 600.0,
+      "endOffset": 630.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0021",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 21,
+      "startOffset": 630.0,
+      "endOffset": 660.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0022",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 22,
+      "startOffset": 660.0,
+      "endOffset": 690.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0023",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 23,
+      "startOffset": 690.0,
+      "endOffset": 720.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0024",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 24,
+      "startOffset": 720.0,
+      "endOffset": 750.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0025",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 25,
+      "startOffset": 750.0,
+      "endOffset": 780.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0026",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 26,
+      "startOffset": 780.0,
+      "endOffset": 810.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0027",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 27,
+      "startOffset": 810.0,
+      "endOffset": 840.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0028",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 28,
+      "startOffset": 840.0,
+      "endOffset": 870.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0029",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 29,
+      "startOffset": 870.0,
+      "endOffset": 900.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0030",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 30,
+      "startOffset": 900.0,
+      "endOffset": 930.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0031",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 31,
+      "startOffset": 930.0,
+      "endOffset": 960.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0032",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 32,
+      "startOffset": 960.0,
+      "endOffset": 990.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0033",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 33,
+      "startOffset": 990.0,
+      "endOffset": 1020.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0034",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 34,
+      "startOffset": 1020.0,
+      "endOffset": 1050.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0035",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 35,
+      "startOffset": 1050.0,
+      "endOffset": 1080.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0036",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 36,
+      "startOffset": 1080.0,
+      "endOffset": 1110.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0037",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 37,
+      "startOffset": 1110.0,
+      "endOffset": 1140.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0038",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 38,
+      "startOffset": 1140.0,
+      "endOffset": 1170.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0039",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 39,
+      "startOffset": 1170.0,
+      "endOffset": 1200.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0040",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 40,
+      "startOffset": 1200.0,
+      "endOffset": 1230.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0041",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 41,
+      "startOffset": 1230.0,
+      "endOffset": 1260.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0042",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 42,
+      "startOffset": 1260.0,
+      "endOffset": 1290.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0043",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 43,
+      "startOffset": 1290.0,
+      "endOffset": 1320.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0044",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 44,
+      "startOffset": 1320.0,
+      "endOffset": 1350.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0045",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 45,
+      "startOffset": 1350.0,
+      "endOffset": 1380.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0046",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 46,
+      "startOffset": 1380.0,
+      "endOffset": 1410.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0047",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 47,
+      "startOffset": 1410.0,
+      "endOffset": 1440.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0048",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 48,
+      "startOffset": 1440.0,
+      "endOffset": 1470.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0049",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 49,
+      "startOffset": 1470.0,
+      "endOffset": 1500.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0050",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 50,
+      "startOffset": 1500.0,
+      "endOffset": 1530.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0051",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 51,
+      "startOffset": 1530.0,
+      "endOffset": 1560.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0052",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 52,
+      "startOffset": 1560.0,
+      "endOffset": 1590.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0053",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 53,
+      "startOffset": 1590.0,
+      "endOffset": 1620.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0054",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 54,
+      "startOffset": 1620.0,
+      "endOffset": 1650.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0055",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 55,
+      "startOffset": 1650.0,
+      "endOffset": 1680.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0056",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 56,
+      "startOffset": 1680.0,
+      "endOffset": 1710.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0057",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 57,
+      "startOffset": 1710.0,
+      "endOffset": 1740.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0058",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 58,
+      "startOffset": 1740.0,
+      "endOffset": 1770.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0059",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 59,
+      "startOffset": 1770.0,
+      "endOffset": 1800.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0060",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 60,
+      "startOffset": 1800.0,
+      "endOffset": 1830.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0061",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 61,
+      "startOffset": 1830.0,
+      "endOffset": 1860.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0062",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 62,
+      "startOffset": 1860.0,
+      "endOffset": 1890.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0063",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 63,
+      "startOffset": 1890.0,
+      "endOffset": 1920.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0064",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 64,
+      "startOffset": 1920.0,
+      "endOffset": 1950.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0065",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 65,
+      "startOffset": 1950.0,
+      "endOffset": 1980.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0066",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 66,
+      "startOffset": 1980.0,
+      "endOffset": 2010.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0067",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 67,
+      "startOffset": 2010.0,
+      "endOffset": 2040.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0068",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 68,
+      "startOffset": 2040.0,
+      "endOffset": 2070.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0069",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 69,
+      "startOffset": 2070.0,
+      "endOffset": 2100.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0070",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 70,
+      "startOffset": 2100.0,
+      "endOffset": 2130.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0071",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 71,
+      "startOffset": 2130.0,
+      "endOffset": 2160.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0072",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 72,
+      "startOffset": 2160.0,
+      "endOffset": 2190.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0073",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 73,
+      "startOffset": 2190.0,
+      "endOffset": 2220.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0074",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 74,
+      "startOffset": 2220.0,
+      "endOffset": 2250.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0075",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 75,
+      "startOffset": 2250.0,
+      "endOffset": 2280.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0076",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 76,
+      "startOffset": 2280.0,
+      "endOffset": 2310.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0077",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 77,
+      "startOffset": 2310.0,
+      "endOffset": 2340.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0078",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 78,
+      "startOffset": 2340.0,
+      "endOffset": 2370.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0079",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 79,
+      "startOffset": 2370.0,
+      "endOffset": 2400.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0080",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 80,
+      "startOffset": 2400.0,
+      "endOffset": 2430.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0081",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 81,
+      "startOffset": 2430.0,
+      "endOffset": 2460.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0082",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 82,
+      "startOffset": 2460.0,
+      "endOffset": 2490.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0083",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 83,
+      "startOffset": 2490.0,
+      "endOffset": 2520.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0084",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 84,
+      "startOffset": 2520.0,
+      "endOffset": 2550.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0085",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 85,
+      "startOffset": 2550.0,
+      "endOffset": 2580.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0086",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 86,
+      "startOffset": 2580.0,
+      "endOffset": 2610.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0087",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 87,
+      "startOffset": 2610.0,
+      "endOffset": 2640.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0088",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 88,
+      "startOffset": 2640.0,
+      "endOffset": 2670.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0089",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 89,
+      "startOffset": 2670.0,
+      "endOffset": 2700.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0090",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 90,
+      "startOffset": 2700.0,
+      "endOffset": 2730.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0091",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 91,
+      "startOffset": 2730.0,
+      "endOffset": 2760.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0092",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 92,
+      "startOffset": 2760.0,
+      "endOffset": 2790.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0093",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 93,
+      "startOffset": 2790.0,
+      "endOffset": 2820.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0094",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 94,
+      "startOffset": 2820.0,
+      "endOffset": 2850.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0095",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 95,
+      "startOffset": 2850.0,
+      "endOffset": 2880.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0096",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 96,
+      "startOffset": 2880.0,
+      "endOffset": 2910.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0097",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 97,
+      "startOffset": 2910.0,
+      "endOffset": 2940.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0098",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 98,
+      "startOffset": 2940.0,
+      "endOffset": 2970.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0099",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 99,
+      "startOffset": 2970.0,
+      "endOffset": 3000.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0100",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 100,
+      "startOffset": 3000.0,
+      "endOffset": 3030.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0101",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 101,
+      "startOffset": 3030.0,
+      "endOffset": 3060.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0102",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 102,
+      "startOffset": 3060.0,
+      "endOffset": 3090.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0103",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 103,
+      "startOffset": 3090.0,
+      "endOffset": 3120.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0104",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 104,
+      "startOffset": 3120.0,
+      "endOffset": 3150.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0105",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 105,
+      "startOffset": 3150.0,
+      "endOffset": 3180.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0106",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 106,
+      "startOffset": 3180.0,
+      "endOffset": 3210.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0107",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 107,
+      "startOffset": 3210.0,
+      "endOffset": 3240.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0108",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 108,
+      "startOffset": 3240.0,
+      "endOffset": 3270.0,
+      "sourceLabel": "Room",
+      "text": "okay so the customer pilot starts monday and the support rota needs one more owner",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0109",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 109,
+      "startOffset": 3270.0,
+      "endOffset": 3300.0,
+      "sourceLabel": "Room",
+      "text": "the launch budget is forty two thousand dollars including the accessibility review",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0110",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 110,
+      "startOffset": 3300.0,
+      "endOffset": 3330.0,
+      "sourceLabel": "Room",
+      "text": "we agreed that the canonical transcript stays unchanged even when cleanup is available",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0111",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 111,
+      "startOffset": 3330.0,
+      "endOffset": 3360.0,
+      "sourceLabel": "Room",
+      "text": "please record the risk that offline model readiness must not trigger a hidden download",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0112",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 112,
+      "startOffset": 3360.0,
+      "endOffset": 3390.0,
+      "sourceLabel": "Room",
+      "text": "the design review is thursday at ten thirty and the prototype uses synthetic data only",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0113",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 113,
+      "startOffset": 3390.0,
+      "endOffset": 3420.0,
+      "sourceLabel": "Room",
+      "text": "we should keep the source segment identifiers stable for export retrieval and recovery",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0114",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 114,
+      "startOffset": 3420.0,
+      "endOffset": 3450.0,
+      "sourceLabel": "Room",
+      "text": "the current estimate is three working days but that is complexity guidance not a promise",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0115",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 115,
+      "startOffset": 3450.0,
+      "endOffset": 3480.0,
+      "sourceLabel": "Room",
+      "text": "alex will validate the benchmark report after the implementation handoff is reviewable",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0116",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 116,
+      "startOffset": 3480.0,
+      "endOffset": 3510.0,
+      "sourceLabel": "Room",
+      "text": "the phrase open bridge sometimes appears as two words in raw parakeet style output",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0117",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 117,
+      "startOffset": 3510.0,
+      "endOffset": 3540.0,
+      "sourceLabel": "Room",
+      "text": "we need a build revise or reject decision based on measured evidence from this mac",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0118",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 118,
+      "startOffset": 3540.0,
+      "endOffset": 3570.0,
+      "sourceLabel": "Room",
+      "text": "the original text must remain available beside the cleaned revision for comparison",
+      "isFinal": true
+    },
+    {
+      "id": "clean-00-60m-meeting-segment-0119",
+      "meetingID": "clean-00-60m-meeting",
+      "sequence": 119,
+      "startOffset": 3570.0,
+      "endOffset": 3600.0,
+      "sourceLabel": "Room",
+      "text": "if memory pressure or swap grows on every run we should revise the production approach",
+      "isFinal": true
+    }
+  ]
+}

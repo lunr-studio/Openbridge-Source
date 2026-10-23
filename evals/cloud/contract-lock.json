@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "authority": "EVAL.md v1; initial CLOUD-01 creation. Subsequent protected-input changes require explicit human approval.",
+  "files": {
+    "evals/cloud/cases.json": "a0a73d2b5b4d5c4e011b1d930c71a4a33f69171146444bc19eb073134c131b77",
+    "evals/cloud/cli.mjs": "7dcd9fbea0d97fb8bbce85587de08c962d89e7ce86f3f07cfcc39503cec24919",
+    "evals/cloud/lib/control.mjs": "67a5a48d66c5dfd880fcf60057048c42c3ed481961d60840cb207559355bf590",
+    "evals/cloud/lib/fixtures.mjs": "9c60b8926249a060ad4276d220486dfc373d914de794b1d3395deb8622dbddeb",
+    "evals/cloud/lib/grading.mjs": "71cc78370872e80eb3536ce186240f0e816e6dde27ef4a3052cf2c57e6b5d2b4",
+    "evals/cloud/lib/reference.mjs": "09fedf11c4af9d24c39a161099ce311e3d729e4ca0426c017ec8e5fe437a15e7",
+    "evals/cloud/package-lock.json": "005c727524353248045b3e89ea88cb4e33aa17ed461c0bd4314e0a4a3efdf243",
+    "evals/cloud/package.json": "2c58d2fbdebf822a9801cf3e60071c7e9f385c18d363ae9135d8ad6ab788a6ef",
+    "evals/cloud/playwright.config.mjs": "286850c275c3996a482b1ff77c4e5afb878e3303bbf6e792a10eba5debd1ca03",
+    "evals/cloud/tests/contracts.spec.mjs": "addbb1aeb1c2d2cf5f447841ffc519089686b3394d60887fa9521ec82efbcbee",
+    "evals/cloud/tests/harness.test.mjs": "716b7318a63b2d44ea6d1569f7c3f65343de630a4d21c9a3d2da003af1bc0729",
+    "evals/cloud/tests/mcp.spec.mjs": "9440e56f9cf64c5013030de2eba18782e5209cc00685fc6280550f6873302068",
+    "evals/cloud/tests/retrieval.spec.mjs": "b2336a8d67fea29c63a478b8a89d753c730f62058303c17ceefb1462432eca62",
+    "evals/fixtures/cloud/v1/audio.json": "dc0d56d6141f9ea0bc18ff541c6dc764d63e08ef4f5729f855e553d5944a6096",
+    "evals/fixtures/cloud/v1/expectations.json": "d50eabaa33a669eb5cbf137a27d9cd95c4ffb4d81072d79097c36ef21f66fecd",
+    "evals/fixtures/cloud/v1/meetings.json": "a97f0e4eb127b1ad14e32e1338a28050b466ca95e23a6218287ec1a94d2f85ed",
+    "evals/fixtures/cloud/v1/sync_today.txt": "dec1a8c183f2204248cb0d9981bf59ec7401768ee49838fdc6012ee4d93fc370",
+    "evals/fixtures/cloud/v1/sync_today.wav": "2e67e0e3516ce38ebb8633ca1faf99f8c390882617d4282e145a90b975ea4e5e",
+    "evals/cloud/tests/runner-integrity.test.mjs": "34c1e585a7679cdcb2facac8592573cc87879128f46e1ef8ae4ed5f2556bfbac",
+    "evals/cloud/lib/report.mjs": "b75c1f87264a62e5faf4d747feba4369f06297c7844f9e1fecd315dde29e1299",
+    "evals/cloud/tests/runner-completeness.test.mjs": "d1f4c2750a6a7f5a4b40b1247b800e375dc945a5f77fed292910ff67bdbe8e2b",
+    "evals/cloud/tests/runner-evidence.test.mjs": "1511caeac0212a6b2599a081cef18130ba07f67e74ef960525d20bb9bbd74f01"
+  }
+}

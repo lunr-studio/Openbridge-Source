@@ -1,0 +1,1 @@
+Use Playwright for HTTP and MCP contracts. Native capture controls and macOS notifications need separate native Mac checks. Alex will add unauthorized-access and duplicate-retry tests. Trishan will review the native completion notification.

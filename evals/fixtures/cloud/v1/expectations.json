@@ -1,0 +1,96 @@
+{
+  "grader_version": "cloud-grounding-v1",
+  "notification": "Insights from the latest meeting are available through MCP.",
+  "questions": {
+    "F2": "What did we decide about the API schema yesterday?",
+    "F3": "Use the OpenBridge MCP to retrieve our decisions on end-to-end user tests from today’s sync."
+  },
+  "facts": {
+    "F1": [
+      {
+        "id": "http-mcp-boundary",
+        "meeting_id": "sync_today",
+        "segment_id": "sync1",
+        "text": "Use Playwright for HTTP and MCP contracts."
+      },
+      {
+        "id": "native-boundary",
+        "meeting_id": "sync_today",
+        "segment_id": "sync1",
+        "text": "Native capture controls and macOS notifications need separate native Mac checks."
+      },
+      {
+        "id": "alex-tests",
+        "meeting_id": "sync_today",
+        "segment_id": "sync2",
+        "text": "Alex will add unauthorized-access and duplicate-retry tests."
+      },
+      {
+        "id": "trishan-review",
+        "meeting_id": "sync_today",
+        "segment_id": "sync2",
+        "text": "Trishan will review the native completion notification."
+      }
+    ],
+    "F2": [
+      {
+        "id": "schema-identity",
+        "meeting_id": "api_yesterday",
+        "segment_id": "api1",
+        "text": "Use schema_version 1 and keep session_id equal to the original meeting ID."
+      },
+      {
+        "id": "deduplication",
+        "meeting_id": "api_yesterday",
+        "segment_id": "api2",
+        "text": "Deduplicate ingestion by the meeting ID and original revision; retries must not create duplicate records."
+      },
+      {
+        "id": "schema-unchanged",
+        "meeting_id": "live_today",
+        "segment_id": "live1",
+        "text": "Keep yesterday's API schema unchanged."
+      },
+      {
+        "id": "alex-current",
+        "meeting_id": "live_today",
+        "segment_id": "live1",
+        "text": "Alex is checking duplicate retries today."
+      }
+    ],
+    "F3": [
+      {
+        "id": "http-mcp-boundary",
+        "meeting_id": "sync_today",
+        "segment_id": "sync1",
+        "text": "Use Playwright for HTTP and MCP contracts."
+      },
+      {
+        "id": "native-boundary",
+        "meeting_id": "sync_today",
+        "segment_id": "sync1",
+        "text": "Native capture controls and macOS notifications need separate native Mac checks."
+      },
+      {
+        "id": "alex-tests",
+        "meeting_id": "sync_today",
+        "segment_id": "sync2",
+        "text": "Alex will add unauthorized-access and duplicate-retry tests."
+      },
+      {
+        "id": "trishan-review",
+        "meeting_id": "sync_today",
+        "segment_id": "sync2",
+        "text": "Trishan will review the native completion notification."
+      }
+    ]
+  },
+  "forbidden_patterns": [
+    "schema_version\\s*[:=]?\\s*2",
+    "schema version 2",
+    "Alex (?:has )?(?:finished|completed)",
+    "(?:tests (?:have |already )?passed)",
+    "(?:due (?:on|by)|deadline is)",
+    "(?:updated|changed) (?:the )?GitHub"
+  ]
+}

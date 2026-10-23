@@ -1,0 +1,61 @@
+name: Cloud evaluation harness
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  harness:
+    name: Cloud harness contracts and controls
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: evals/cloud
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Verify exact candidate
+        env:
+          OPENBRIDGE_EVAL_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$OPENBRIDGE_EVAL_SHA"
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: evals/cloud/package-lock.json
+      - run: npm ci
+      - name: Grader and governance controls
+        run: npm run test:harness
+      - name: Deterministic reference contracts
+        run: node cli.mjs --lane D --out ../../.local-evidence/cloud/reference
+      - name: Verify the deliberately absent reference fails
+        run: |
+          if node cli.mjs --lane D --target absent --out ../../.local-evidence/cloud/absence; then
+            echo "Absent reference unexpectedly passed"
+            exit 1
+          else
+            test "$?" -eq 1
+          fi
+          node --input-type=module -e "import fs from 'node:fs'; import assert from 'node:assert/strict'; const r=JSON.parse(fs.readFileSync('../../.local-evidence/cloud/absence/report.json')); assert.equal(r.negative_control.demonstrated,true); assert.equal(r.product_baseline.valid,false);"
+      - name: Preserve unavailable real and native lanes as blocked
+        run: |
+          for lane in R N C A; do
+            if node cli.mjs --lane "$lane" --out "../../.local-evidence/cloud/$lane"; then
+              echo "Unavailable lane unexpectedly passed"
+              exit 1
+            else
+              test "$?" -eq 2
+            fi
+          done
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: cloud-harness-evidence-${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          path: .local-evidence/cloud/
+          retention-days: 30
+          if-no-files-found: error
+          include-hidden-files: true

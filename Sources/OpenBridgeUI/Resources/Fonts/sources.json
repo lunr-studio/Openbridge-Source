@@ -1,0 +1,46 @@
+{
+  "retrieved": "2026-09-13",
+  "format": "Unmodified official original OpenType desktop fonts; no conversion.",
+  "fonts": [
+    {
+      "file": "InstrumentSans-Regular.otf",
+      "source": "https://raw.githubusercontent.com/Instrument/instrument-sans/7fa22308a3d0c94ee2b3cd537a1196b65db34a3e/fonts/otf/InstrumentSans-Regular.otf",
+      "sha256": "33c8c755cba3cc84248b28d58f524deb150f5f9b55b27660270e643086a372fa"
+    },
+    {
+      "file": "InstrumentSans-Medium.otf",
+      "source": "https://raw.githubusercontent.com/Instrument/instrument-sans/7fa22308a3d0c94ee2b3cd537a1196b65db34a3e/fonts/otf/InstrumentSans-Medium.otf",
+      "sha256": "09fa4f6fde72fe99d109bc819f644d64d669e4a4ec0ac03f06d8dfa06cbd13c3"
+    },
+    {
+      "file": "InstrumentSans-SemiBold.otf",
+      "source": "https://raw.githubusercontent.com/Instrument/instrument-sans/7fa22308a3d0c94ee2b3cd537a1196b65db34a3e/fonts/otf/InstrumentSans-SemiBold.otf",
+      "sha256": "2846d6247a7f1e4e9f5f33db16beee5158c0e21a880e393701c360be30d085fe"
+    },
+    {
+      "file": "InstrumentSans-Bold.otf",
+      "source": "https://raw.githubusercontent.com/Instrument/instrument-sans/7fa22308a3d0c94ee2b3cd537a1196b65db34a3e/fonts/otf/InstrumentSans-Bold.otf",
+      "sha256": "6746ca64cc52b8529b0848fdc5967ca20ec2e88cbe30a88df169a08f58c4a25c"
+    },
+    {
+      "file": "GeistMono-Regular.otf",
+      "source": "https://raw.githubusercontent.com/vercel/geist-font/10dc7658f13c38a474cde201bb09a4617267545b/fonts/GeistMono/otf/GeistMono-Regular.otf",
+      "sha256": "2ffe5187bb29941057a3dceac997eedc8f15e5e66b2139097aef642f2616c318"
+    },
+    {
+      "file": "GeistMono-Medium.otf",
+      "source": "https://raw.githubusercontent.com/vercel/geist-font/10dc7658f13c38a474cde201bb09a4617267545b/fonts/GeistMono/otf/GeistMono-Medium.otf",
+      "sha256": "052e4a5d624bd6c34d23b3e3e3bf9c8ba4b89bda4c6bbab071a6bbdec444f351"
+    },
+    {
+      "file": "GeistMono-SemiBold.otf",
+      "source": "https://raw.githubusercontent.com/vercel/geist-font/10dc7658f13c38a474cde201bb09a4617267545b/fonts/GeistMono/otf/GeistMono-SemiBold.otf",
+      "sha256": "8f3ea758017b7bfac85eb61a228f6e9f884ec63501f09150cd0f0e0e952fab0f"
+    },
+    {
+      "file": "GeistMono-Bold.otf",
+      "source": "https://raw.githubusercontent.com/vercel/geist-font/10dc7658f13c38a474cde201bb09a4617267545b/fonts/GeistMono/otf/GeistMono-Bold.otf",
+      "sha256": "6e07ddac326544cb1f121b9de605888bba501014889d54a5ac6868eb87e400cd"
+    }
+  ]
+}

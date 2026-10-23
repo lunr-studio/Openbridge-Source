@@ -1,0 +1,168 @@
+OpenBridge V3 — Test Checklist 214 — Retention + Revision-Aware Export QA
+Version: v4 (2026-08-28; covers review waves 1–14; checklist refreshed in the same commit as every code push per standing rule)
+Issue: lunr-studio/Openbridge-Beta#214
+PR: lunr-studio/Openbridge-Dev#70 (branch fix/214-retention-export; final head = the wave-13 commit)
+Build to test: internal QA build of the reviewed PR #70 candidate
+(record the exact build/version here when handed off: ____________ )
+Tester: ____________    Date: ____________    macOS: ____________
+
+PURPOSE
+Verify the production user path the 2026-08-21 acceptance reset demanded:
+the retention picker exposes every policy (incl. delete-audio-after-transcript
+and never-store), destructive policies require confirmation, retention is
+enforced in storage, never-store keeps nothing durable yet still finalizes
+after recovery, recovery respects the delete-audio policy with honest
+confirmations, the visible Export produces TXT/Markdown of the selected
+revision (Cleaned default when valid, Original always explicit), audio is
+never deleted when unsafe, full deletion is atomic + confirmed, and derived
+records are removed. Findings from all 12 review waves are folded in below.
+
+PRE-FLIGHT
+[ ] P1. QA build launches; version/build matches the candidate record.
+[ ] P2. Terminal helper ready (below) for manifest/audio inspection.
+[ ] P3. A disposable meeting exists for each check (fresh title per run).
+
+Helper — inspect the latest meeting:
+LATEST=$(ls -t ~/Library/Application\ Support/OpenBridge/Meetings/ | head -1)
+ls ~/Library/Application\ Support/OpenBridge/Meetings/$LATEST/audio/
+python3 -c "
+import json,os
+p=os.path.expanduser('~/Library/Application Support/OpenBridge/Meetings/$LATEST/manifest.json')
+m=json.load(open(p))
+print('state:', m['state'], '| policy:', m.get('retentionPolicy'), '| segments:', len(m.get('segments',[])), '| audio:', len(m.get('audioSegments',[])))
+print('cleanupJobs:', len(m.get('cleanupJobs',[])), '| revisions:', len(m.get('cleanupRevisions',[])))
+print('events tail:', m.get('events',[])[-3:])
+"
+
+CHECK 1 — Retention policy visibility (AC1)
+[ ] 1.1 Before recording: the retention picker shows Keep until deleted /
+       Delete after 7 days / Delete after 30 days / Delete audio after
+       transcript / Never store transcript.
+[ ] 1.2 The selected policy is shown on the saved meeting (friendly label,
+       not a code name).
+[ ] 1.3 The picker remembers the persisted default across launches.
+Notes: ________________________________________________
+
+CHECK 2 — Destructive policy requires confirmation (AC10)
+[ ] 2.1 Selecting Delete after 7/30 days, Never store transcript, or Delete
+       audio after transcript pops a confirmation BEFORE it is applied.
+[ ] 2.2 Cancel keeps the previous policy.
+[ ] 2.3 Confirm applies it for future meetings (default persisted).
+Notes: ________________________________________________
+
+CHECK 3 — Auto-delete follows the persisted policy (AC2)
+[ ] 3.1 Set Delete after 7 days; (time-controlled — helper/manual) the
+       meeting is pruned once its reference date passes the window.
+[ ] 3.2 Keep until deleted and Delete audio after transcript are never fully
+       pruned by auto-delete.
+[ ] 3.3 Never-store meetings are never auto-pruned.
+[ ] 3.4 A completed Delete-audio meeting whose raw audio was left on disk
+       (e.g. app quit between save and enforcement) has that audio removed
+       after relaunch (wave-10 3876862720).
+[ ] 3.5 If pruning one expired meeting fails, the rest still prune and the
+       pending-audio reconciliation still runs (wave-11 3876962676).
+Notes: ________________________________________________
+
+CHECK 4 — Delete audio after transcript safety (AC3/AC4/AC5)
+[ ] 4.1 With policy delete-audio-after-transcript and a COMPLETED meeting
+       with a valid transcript: audio is deleted, canonical transcript +
+       valid revisions + manifest remain.
+[ ] 4.2 With a meeting whose final transcription FAILED (audio-only / no
+       valid transcript): audio is NOT deleted.
+[ ] 4.3 With an INTERRUPTED (recovery-pending) meeting: audio is NOT deleted.
+[ ] 4.4 With a whitespace-only / empty transcript: audio is NOT deleted
+       (wave-1 3875726281).
+[ ] 4.5 Cleanup failure does NOT block audio deletion when a valid original
+       transcript exists.
+[ ] 4.6 After a RECOVERED + finalized meeting, the delete-audio policy is
+       honored (wave-1 3875726261).
+[ ] 4.7 With a foreign/duplicate/invalid typed segment next to valid ones
+       covering every WAV: audio is NOT deleted (wave-10 3876862709).
+[ ] 4.8 When the safety gates refuse deletion, the UI shows a warning
+       ("raw audio preserved") instead of a silent success toast
+       (wave-10 3876862715).
+[ ] 4.9 A normal successful Stop under Keep until deleted / auto-delete /
+       never-store shows NO retention warning at all (wave-11 3876962667).
+[ ] 4.10 If the completed manifest cannot be saved at Stop, no audio is
+        deleted and the user is told the meeting could not be saved
+        (wave-12 3876176414).
+[ ] 4.11 If the audio directory exists but cannot be enumerated (e.g. an
+        unreadable directory), deletion is REFUSED - a failed enumeration
+        never reads as "no audio on disk" (wave-13 3877338958, covered by
+        swift test).
+[ ] 4.12 A WAV whose name is not a parseable segment_<Int>.wav (e.g. a
+        legacy segment_backup.wav) REFUSES deletion even when every parseable
+        index is covered (wave-14 3884384378, covered by swift test).
+Notes: ________________________________________________
+
+CHECK 5 — Never-store transcript behavior
+[ ] 5.1 Start + stop a meeting with Never store transcript: the live
+       transcript is visible during the meeting, but the saved manifest has
+       NO durable segments/spans (helper shows segments: 0, spans empty).
+[ ] 5.2 The live transcript separates segments with real newlines (no
+       literal backslash-n text) and overlapping chunks are not repeated
+       (wave-11 3876962660).
+[ ] 5.3 The saved meeting still shows a friendly label + policy.
+[ ] 5.4 Never-store never creates cleanup jobs/revisions (wave-2 3876240282).
+Notes: ________________________________________________
+
+CHECK 6 — Recovery + retention interplay (retry/finalize)
+[ ] 6.1 An interrupted meeting offers retry + finalize; retry transcribes
+       only the missing segments from preserved audio.
+[ ] 6.2 Finalize on an audio-only (no valid transcript) meeting is refused
+       with "audio preserved", and retry is still offered.
+[ ] 6.3 Finalize confirmation: for a delete-audio-after-transcript meeting
+       the message EXPLICITLY says raw audio is deleted after verification;
+       for other policies it says all audio is kept (wave-12 3876176439).
+[ ] 6.4 After finalizing a recovered delete-audio meeting, the meeting list
+       row refreshes and replay cannot open files that were deleted
+       (wave-12 3876176432).
+[ ] 6.5 Never-store recovery: retry succeeds then Finalize COMPLETES the
+       meeting even though nothing is stored durably (wave-9 3876794393,
+       wave-11 3876962658).
+[ ] 6.6 A never-store retry that left a chunk without its durable marker
+       reports retry failed, never a false "you can finalize"
+       (wave-10 3876862718).
+[ ] 6.7 Legacy (pre-typed) meetings: a meaningful "[Segment N] text" span
+       covers its audio; whitespace-only, bracket-only, or non-covering
+       spans do NOT authorize deletion (waves 3/5/6).
+[ ] 6.8 Typed segments win over legacy spans: a manifest with typed segments
+       never deletes audio the Original export would omit (wave-8 3876762103).
+Notes: ________________________________________________
+
+CHECK 7 — Export produces TXT + Markdown of the selected revision (AC6/AC7/AC8)
+[ ] 7.1 The visible Export button creates a per-meeting subfolder in the
+       chosen folder (no overwrites between meetings; wave-1 3875726244).
+[ ] 7.2 Original is ALWAYS exported explicitly (Original.txt + Original.md)
+       — even when a valid Cleaned revision exists (wave-1 3875726237).
+[ ] 7.3 When a valid Cleaned revision exists, Cleaned.txt + Cleaned.md are
+       also exported; without one, only Original is written.
+[ ] 7.4 Re-exporting a meeting whose active revision became invalid REMOVES
+       the stale Cleaned files (wave-12 3876176444).
+[ ] 7.5 A meeting with a very long title still exports (folder component is
+       byte-bounded; no ENAMETOOLONG) (wave-12 3876176453).
+[ ] 7.6 Files open outside OpenBridge (e.g. TextEdit/Preview) and preserve
+       title/date, timestamps, source labels (Room), and cleanup provenance.
+Notes: ________________________________________________
+
+CHECK 8 — Full deletion is atomic + confirmed (AC9/AC10)
+[ ] 8.1 Deleting a meeting with cleanup revisions/audio asks for confirmation.
+[ ] 8.2 Confirm removes the meeting directory entirely (manifest, audio,
+       transcripts, revisions) — helper shows no leftovers; meeting gone
+       from the list.
+[ ] 8.3 Derived retrieval-index entries are removed when the source meeting
+       is deleted (DEBUG/release per current wiring).
+Notes: ________________________________________________
+
+CHECK 9 — Automated gates on the candidate source
+[ ] 9.1 swift test: full-suite passes on the candidate checkout (final PR #70 head).
+[ ] 9.2 swift build -c release: green.
+[ ] 9.3 CI on the PR head: 3/3 success.
+Notes: ________________________________________________
+
+RESULT
+Overall: [ ] PASS   [ ] FAIL
+Failures: attach sanitized log excerpts (no raw transcripts beyond QA
+policy, no keys, no private paths). Post results to lunr-studio/Openbridge-Beta#214 / PR #70.
+
+Sign-off (QA): ____________________  Date: ____________

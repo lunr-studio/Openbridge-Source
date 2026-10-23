@@ -1,0 +1,107 @@
+OpenBridge V3 — Test Checklist 321 — Cleanup Controls + Transcript Revision Review QA
+Version: v8 (2026-08-29; head-neutral; QA 7.3 fix — retention picker switched from 5-segment segmented to menu style so it never overflows at narrow widths / loses its label / dead-spaces (Alex QA finding); all wave-1..5 fixes retained)
+Issue: lunr-studio/Openbridge-Beta#321 (parent epic lunr-studio/Openbridge-Beta#291)
+PR: lunr-studio/Openbridge-Dev (branch fix/321-cleanup-controls)
+Build to test: internal QA build of the reviewed PR candidate
+(record the exact build/version here when handed off: ____________ )
+Tester: ____________    Date: ____________    macOS: ____________
+
+PURPOSE
+Verify the production cleanup controls + transcript revision review: the
+remembered Clean-locally-after-Stop toggle (Off default, persisted), Stop
+always reveals the Original before cleanup completes, cleanup never starts
+during recording, all durable states are understandable + idempotent,
+Cleaned is the default after success with Original one obvious action away,
+switching revisions never overwrites canonical data, export validity agrees
+with lunr-studio/Openbridge-Beta#214, and accessibility checks pass. The synthetic-state design gate was
+approved by Trishan (issuecomment-5286014615) before production UI.
+
+PRE-FLIGHT
+[ ] P1. QA build launches; version/build matches the candidate record.
+[ ] P2. Terminal helper ready (below) for manifest/job inspection.
+[ ] P3. A disposable meeting exists for each check (fresh title per run).
+
+Helper — inspect the latest meeting cleanup job/revision:
+LATEST=$(ls -t ~/Library/Application\ Support/OpenBridge/Meetings/ | head -1)
+python3 -c "
+import json,os
+p=os.path.expanduser('~/Library/Application Support/OpenBridge/Meetings/$LATEST/manifest.json')
+m=json.load(open(p))
+print('state:', m['state'], '| aiMode:', m.get('aiMode'))
+print('cleanupJobs:', [(j['state'], j.get('attempt')) for j in m.get('cleanupJobs',[])])
+print('revisions:', [(r['state'], r.get('modelRevision')) for r in m.get('cleanupRevisions',[])])
+print('activeRevisionID:', m.get('activeCleanupRevisionID'))
+"
+
+CHECK 1 — Toggle default + persistence (AC1)
+[ ] 1.1 The Clean transcript locally after Stop toggle is shown in the
+       pre-record settings and defaults to Off.
+[ ] 1.2 Turning it On, quitting and relaunching keeps it On (persisted).
+[ ] 1.3 The toggle has explanatory text: cleanup starts only after recording
+       and transcription finalize; Original remains available.
+Notes: ________________________________________________
+
+CHECK 2 — Original-first + never during recording (AC2/AC3)
+[ ] 2.1 Stop always reveals the Original transcript immediately; cleanup
+       never delays access to it.
+[ ] 2.2 Cleanup never starts while recording (starting/recording/finalizing)
+       even when the toggle is On.
+Notes: ________________________________________________
+
+CHECK 3 — Durable states understandable (AC4)
+[ ] 3.1 Queued and Running states show progress and a cancel control.
+[ ] 3.2 Missing-model and Failed states explain the failure and keep the
+       Original available, with Retry where safe.
+[ ] 3.3 Stale (source changed) falls back to Original with a clear label.
+[ ] 3.4 Completed shows Cleaned by default with an always-visible
+       Original/Cleaned switch.
+Notes: ________________________________________________
+
+CHECK 4 — Cancel/retry idempotent + durable (AC5)
+[ ] 4.1 Cancel is idempotent: repeated cancel leaves one cancelled job;
+       the meeting stays completed.
+[ ] 4.2 Retry transitions retryAvailable → queued once and runs once.
+[ ] 4.3 Force-quit during cleanup: relaunch resumes or marks retry; no
+       duplicate/corrupt revisions.
+Notes: ________________________________________________
+
+CHECK 5 — Revision review (AC6/AC7)
+[ ] 5.1 Successful cleanup defaults the review to Cleaned; Original is one
+       obvious action away.
+[ ] 5.2 Switching revisions never changes or overwrites canonical segment
+       data (Original stays byte-for-byte).
+[ ] 5.3 Timestamps and source labels are preserved in both revisions.
+Notes: ________________________________________________
+
+CHECK 6 — Export validity agreement (AC8)
+[ ] 6.1 The review surface shows the same validity the lunr-studio/Openbridge-Beta#214 export uses:
+       (covered by swift test revisionReviewValidityAgreesWithExportGate)
+       Cleaned exported only when a valid current revision exists.
+[ ] 6.2 Exporting the meeting produces Original always + Cleaned when valid.
+Notes: ________________________________________________
+
+CHECK 7 — Accessibility (AC9)
+[ ] 7.1 Keyboard: toggle, cancel, retry, and the revision switch are all
+       reachable and operable via keyboard.
+[ ] 7.2 VoiceOver reads the toggle, state text, and revision switch.
+[ ] 7.3 Contrast (light-only): status text remains readable; dark appearance N/A — app is intentionally light-only per OpenBridgeTheme (literal RGB palette) + .preferredColorScheme(.light) at 5 sites (MainWindowView:45, Views:72/401/1425, FlowBarOverlayView:30);
+       (toggle/cancel/retry/picker are standard SwiftUI controls — keyboard +
+       VoiceOver operable; hints added for cancel/retry)
+       narrow/wide layouts hold; reduced motion does not break progress.
+       (QA v1 fix: the Retention picker is now a MENU picker — the previous
+       5-segment segmented picker overflowed at narrow widths, clipped its
+       label, and dead-spaced; menu style is compact at any width.)
+Notes: ________________________________________________
+
+CHECK 8 — Automated gates on the candidate source
+[ ] 8.1 swift test: full-suite passes on the candidate checkout.
+[ ] 8.2 swift build -c release: green.
+[ ] 8.3 CI on the PR head: 3/3 success.
+Notes: ________________________________________________
+
+RESULT
+Overall: [ ] PASS   [ ] FAIL
+Failures: attach sanitized log excerpts (no raw transcripts beyond QA
+policy, no keys, no private paths). Post results to lunr-studio/Openbridge-Beta#321.
+
+Sign-off (QA): ____________________  Date: ____________

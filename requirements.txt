@@ -1,0 +1,12 @@
+mlx-whisper
+mlx-lm
+parakeet-mlx
+huggingface_hub
+numpy
+pyautogui
+pynput
+pyperclip
+psutil
+sounddevice
+soundfile
+yt-dlp

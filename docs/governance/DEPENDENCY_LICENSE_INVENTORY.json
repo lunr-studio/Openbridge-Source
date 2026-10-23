@@ -1,0 +1,149 @@
+{
+  "document": {
+    "title": "OpenBridge source dependency licence inventory",
+    "lastUpdated": "2026-10-23",
+    "scope": "Source development only; no compiled application, packaged runtime, model weights, or FFmpeg binary is distributed by this repository."
+  },
+  "python": {
+    "manifest": "requirements.txt",
+    "lockfile": "requirements-lock.txt",
+    "lockfileHashMode": "pip --require-hashes",
+    "direct": [
+      {
+        "name": "mlx-whisper",
+        "version": "0.4.3",
+        "licence": "MIT"
+      },
+      {
+        "name": "mlx-lm",
+        "version": "0.31.3",
+        "licence": "MIT"
+      },
+      {
+        "name": "parakeet-mlx",
+        "version": "0.5.2",
+        "licence": "Apache-2.0"
+      },
+      {
+        "name": "huggingface-hub",
+        "version": "1.15.0",
+        "licence": "Apache-2.0"
+      },
+      {
+        "name": "numpy",
+        "version": "2.4.5",
+        "licence": "BSD-3-Clause"
+      },
+      {
+        "name": "pyautogui",
+        "version": "0.9.54",
+        "licence": "BSD-3-Clause"
+      },
+      {
+        "name": "pynput",
+        "version": "1.8.2",
+        "licence": "LGPL-3.0-or-later"
+      },
+      {
+        "name": "pyperclip",
+        "version": "1.11.0",
+        "licence": "BSD-3-Clause"
+      },
+      {
+        "name": "psutil",
+        "version": "7.2.2",
+        "licence": "BSD-3-Clause",
+        "source": "https://github.com/giampaolo/psutil/blob/master/LICENSE"
+      },
+      {
+        "name": "sounddevice",
+        "version": "0.5.5",
+        "licence": "MIT"
+      },
+      {
+        "name": "soundfile",
+        "version": "0.13.1",
+        "licence": "BSD-3-Clause"
+      },
+      {
+        "name": "yt-dlp",
+        "version": "2026.7.4",
+        "licence": "Unlicense"
+      }
+    ],
+    "transitive": "See requirements-lock.txt for the full resolved and hash-locked environment."
+  },
+  "swift": {
+    "manifest": "Package.swift",
+    "dependencies": [],
+    "notes": "The app uses Apple system frameworks and has no external Swift Package Manager dependency."
+  },
+  "externalTools": [
+    {
+      "name": "FFmpeg",
+      "distribution": "Not included",
+      "licence": "LGPL or GPL depending on the contributor-provided build",
+      "obligation": "A downstream binary distributor must inspect the build configuration and satisfy the applicable notices and source-availability terms."
+    }
+  ],
+  "models": [
+    {
+      "runtimeIdentifier": "whisper-tiny",
+      "repoId": "mlx-community/whisper-tiny-mlx",
+      "weightLicence": "MIT",
+      "distribution": "Runtime download; not included"
+    },
+    {
+      "runtimeIdentifier": "whisper-base",
+      "repoId": "mlx-community/whisper-base-mlx",
+      "weightLicence": "MIT",
+      "distribution": "Runtime download; not included"
+    },
+    {
+      "runtimeIdentifier": "whisper-large-v3",
+      "repoId": "mlx-community/whisper-large-v3-mlx",
+      "weightLicence": "MIT",
+      "distribution": "Runtime download; not included"
+    },
+    {
+      "runtimeIdentifier": "parakeet-tdt-0.6b-v3-mlx-bf16",
+      "repoId": "sonic-speech/parakeet-tdt-0.6b-v3",
+      "origin": "NVIDIA Parakeet TDT v3 converted for MLX",
+      "weightLicence": "CC-BY-4.0",
+      "distribution": "Runtime download; not included"
+    },
+    {
+      "runtimeIdentifier": "parakeet-reference",
+      "repoId": "nvidia/parakeet-tdt-0.6b-v3",
+      "weightLicence": "CC-BY-4.0",
+      "distribution": "Runtime download; not included"
+    },
+    {
+      "runtimeIdentifier": "correction-and-command",
+      "repoId": "mlx-community/gemma-3-4b-it-qat-4bit",
+      "weightLicence": "Google Gemma Terms of Use",
+      "distribution": "Runtime download; not included"
+    }
+  ],
+  "developmentTools": [
+    {
+      "name": "@playwright/test",
+      "version": "1.64.0",
+      "licence": "Apache-2.0",
+      "manifest": "evals/cloud/package.json",
+      "source": "https://github.com/microsoft/playwright/blob/main/LICENSE"
+    }
+  ],
+  "applicationFonts": [
+    {
+      "name": "Instrument Sans",
+      "licence": "OFL-1.1",
+      "licenceFile": "Sources/OpenBridgeUI/Resources/Fonts/InstrumentSans-OFL.txt"
+    },
+    {
+      "name": "Geist Mono",
+      "licence": "OFL-1.1",
+      "licenceFile": "Sources/OpenBridgeUI/Resources/Fonts/GeistMono-OFL.txt"
+    }
+  ]
+}
