@@ -33,7 +33,7 @@ Primary references, checked September 27, 2026:
 
 
 The Research Observatory rail (#318) defines a `web` evidence scope. When a
-user explicitly authorizes cloud web research for a question, OpenBridge
+user explicitly authorizes cloud web research for a question, Openbridge
 must query a web search provider, normalize the results into the existing
 `ResearchEvidence` contract, and surface them as citable evidence with
 source URLs.

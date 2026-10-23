@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-OpenBridge project-authored source is licensed under Apache-2.0. The following software and model assets retain their own terms.
+Openbridge project-authored source is licensed under Apache-2.0. The following software and model assets retain their own terms.
 
 ## Python packages
 
@@ -21,7 +21,7 @@ Versions below are the direct versions resolved in `requirements-lock.txt`.
 | soundfile | 0.13.1 | BSD-3-Clause |
 | yt-dlp | 2026.7.4 | Unlicense |
 
-The full resolved environment and package hashes are in `requirements-lock.txt`. Installing dependencies downloads them from their upstream distributors; their licences are not replaced by OpenBridge’s licence.
+The full resolved environment and package hashes are in `requirements-lock.txt`. Installing dependencies downloads them from their upstream distributors; their licences are not replaced by Openbridge’s licence.
 
 ## FFmpeg
 
@@ -44,9 +44,9 @@ Model weights are downloaded at runtime and are not committed here.
 
 Users who download a model must comply with its current upstream terms. The source identifiers are authoritative in `openbridge_engine/config.py`.
 
-## OpenBridge assets
+## Openbridge assets
 
-OpenBridge names, marks, app icons, and menu-bar artwork remain reserved trademarks or brand assets of Lunr Studio. See `docs/governance/TRADEMARK_AND_ASSET_POLICY.md`.
+Openbridge names, marks, app icons, and menu-bar artwork remain reserved trademarks or brand assets of Lunr Studio. See `docs/governance/TRADEMARK_AND_ASSET_POLICY.md`.
 
 This notice is informational and is not legal advice. Contributors changing dependencies, model identifiers, or assets must update the inventory and provenance documents in the same pull request.
 

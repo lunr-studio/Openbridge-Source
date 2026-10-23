@@ -1,6 +1,6 @@
-# Contributing to OpenBridge
+# Contributing to Openbridge
 
-Thank you for helping improve OpenBridge. This repository is intentionally source-only: contributions should concern the macOS app, Python engine, resources, tests, licences, or contributor documentation.
+Thank you for helping improve Openbridge. This repository is intentionally source-only: contributions should concern the macOS app, Python engine, resources, tests, licences, or contributor documentation.
 
 ## Set up
 
@@ -48,6 +48,6 @@ The maintainers handle official binaries in a separate private process.
 
 ## Licensing
 
-OpenBridge uses Apache-2.0 Section 5 inbound=outbound licensing. Contributions intentionally submitted for inclusion are licensed under Apache-2.0; no separate CLA or DCO sign-off is currently required.
+Openbridge uses Apache-2.0 Section 5 inbound=outbound licensing. Contributions intentionally submitted for inclusion are licensed under Apache-2.0; no separate CLA or DCO sign-off is currently required.
 
 See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards and [SECURITY.md](SECURITY.md) for private vulnerability reporting.

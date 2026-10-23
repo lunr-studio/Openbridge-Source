@@ -1,6 +1,6 @@
 # Clean-Mac Contributor Exercise
 
-This exercise proves that a new contributor can clone, compile, test, run, and change OpenBridge without signing credentials.
+This exercise proves that a new contributor can clone, compile, test, run, and change Openbridge without signing credentials.
 
 ## Before you begin
 
@@ -9,7 +9,7 @@ Use a clean Apple Silicon Mac account with:
 - macOS 14 or newer
 - Xcode 16
 - Homebrew, or equivalent installations of Python 3.14 and FFmpeg
-- no OpenBridge signing certificate, notarization credentials, or private repository files
+- no Openbridge signing certificate, notarization credentials, or private repository files
 
 Install the open tools if needed:
 
@@ -31,8 +31,8 @@ ffmpeg -version
 ## Clone and prepare
 
 ```bash
-git clone https://github.com/lunr-studio/OpenBridge-Source.git
-cd OpenBridge-Source
+git clone https://github.com/lunr-studio/Openbridge-Source.git
+cd Openbridge-Source
 python3.14 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip

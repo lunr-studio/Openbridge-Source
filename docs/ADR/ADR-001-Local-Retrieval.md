@@ -98,7 +98,7 @@ then re-rank the top-K results using embedding similarity.
 
 ### Rationale
 
-1. **Zero-dependency constraint is paramount.** OpenBridge's local-first
+1. **Zero-dependency constraint is paramount.** Openbridge's local-first
    philosophy means every dependency is a privacy and maintenance liability.
    FTS5 is already compiled into the system SQLite on every Mac we support.
 

@@ -19,4 +19,4 @@ Do not send real transcripts, patient information, credentials, or other sensiti
 
 This policy covers the source in this repository. It does not cover third-party dependencies, model-provider services, unofficial forks, or a user’s local macOS configuration.
 
-OpenBridge is designed to process speech locally by default. Network activity includes user-requested media/model downloads and explicitly selected optional cloud cleanup/research providers; local transcription does not require those cloud features. Proposed shared Cloud functionality is documented separately and is not established by this source release. See [docs/PRIVACY_STORAGE_NETWORKING.md](docs/PRIVACY_STORAGE_NETWORKING.md).
+Openbridge is designed to process speech locally by default. Network activity includes user-requested media/model downloads and explicitly selected optional cloud cleanup/research providers; local transcription does not require those cloud features. Proposed shared Cloud functionality is documented separately and is not established by this source release. See [docs/PRIVACY_STORAGE_NETWORKING.md](docs/PRIVACY_STORAGE_NETWORKING.md).
