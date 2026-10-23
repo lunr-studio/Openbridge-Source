@@ -60,7 +60,7 @@ jobs:
 
       - name: Authorize exact candidate before scheduling the Mac
         id: authorize-target
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           TARGET_SHA: ${{ inputs.target_sha }}
         with:
@@ -148,7 +148,7 @@ jobs:
       # candidate code runs on the persistent Mac.
       - name: Create target-SHA check run
         id: create-check
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           TARGET_SHA: ${{ inputs.target_sha }}
         with:
@@ -190,7 +190,7 @@ jobs:
       # Revalidate with this job's read-only token before checking out or
       # executing any candidate-controlled source.
       - name: Revalidate live protected control after Mac queue
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           TARGET_AUTHORIZATION: ${{ needs.prepare-target-check.outputs.target_authorization }}
           PULL_REQUEST_NUMBER: ${{ needs.prepare-target-check.outputs.pull_request_number }}
@@ -341,7 +341,7 @@ jobs:
       # commands finish; candidate code could otherwise leave a credential
       # stealing process behind.
       - name: Publish exact-target conclusion
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           CHECK_RUN_ID: ${{ needs.prepare-target-check.outputs.check_run_id }}
           PROOF_RESULT: ${{ needs.mac-mini-proof.result }}
