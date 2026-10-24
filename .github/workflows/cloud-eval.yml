@@ -1,13 +1,18 @@
 name: Cloud evaluation harness
 on:
-  push:
-    branches: [main]
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
     branches: [main]
 permissions:
   contents: read
+# Draft updates do not allocate test runners. Returning to draft cancels stale PR work.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   harness:
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.draft == false }}
     name: Cloud harness contracts and controls
     runs-on: ubuntu-latest
     defaults:
