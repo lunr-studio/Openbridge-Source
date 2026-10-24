@@ -21,9 +21,9 @@ No signing or notarization credentials are needed. See the development guide for
 
 1. Search existing issues first.
 2. Fork the repository and branch from `main`.
-3. Make one focused change and add or update tests.
-4. Run `make test`.
-5. Open a pull request explaining the problem, the change, and the evidence.
+3. Make one focused change and add or update tests under the test-review rules in `AGENTS.md`.
+4. Use a draft pull request while developing and run focused local checks.
+5. Run `make test`, explain the problem, change and evidence, then mark the pull request ready for review. The existing CI suites run at that point; all required checks must pass before merge.
 
 Useful branch names include `fix/short-description`, `feature/short-description`, and `docs/short-description`.
 

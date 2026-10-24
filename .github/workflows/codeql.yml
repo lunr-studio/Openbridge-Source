@@ -1,9 +1,8 @@
 name: CodeQL
 
 on:
-  push:
-    branches: ["main"]
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
     branches: ["main"]
   schedule:
     - cron: "0 0 * * 0"
@@ -13,8 +12,14 @@ permissions:
   contents: read
   security-events: write
 
+# Draft updates do not allocate test runners. Returning to draft cancels stale PR work.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   python:
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.draft == false }}
     name: Python CodeQL
     runs-on: ubuntu-latest
     timeout-minutes: 30
