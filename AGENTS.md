@@ -19,6 +19,10 @@ Read README.md, CONTRIBUTING.md and DESIGN.md before relevant changes. Explain i
   for ready PRs when opened, updated, reopened or marked ready. Required checks
   must pass on the final candidate before merge; a skipped draft check is not
   acceptance evidence. Return to draft for another substantial development cycle.
+- Before marking ready and again before merge, compare the branch with current
+  `main`. Update it when the base changed and rerun verification/review affected
+  by that change; a passing result against an older base does not certify the
+  new integration. Keep required results bound to the final PR head.
 - Routine suites no longer repeat automatically on a `main` push. Scheduled
   security scans and separately authorized manual proof/release workflows retain
   their existing triggers. A changed merge result or relevant execution input
